@@ -4,3 +4,11 @@
 .vs/LXGameEngine/v15/Browse.VC.opendb
 .vs/LXGameEngine/v15/ipch/AutoPCH/_SFI_B641A4BA-1DBA-4765-AA95-7A12C850A941_-2b4bc813/LXINI-d57b3474/LXINI.ipch
 .vs/LXGameEngine/v15/ipch/LXGAMEENGINE-fd4f235d/LXGAMEENGINE-4216bb00.ipch
+*.exe
+*.ilk
+*.pdb
+*.obj
+*.pch
+*.tlog
+*.idb
+*.pdb
