@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Image.h"
+#include "Common.h"
 
 
 unsigned char WHITE_2X2_IMAGE_DATA[4] = {0xff, 0xff, 0xff, 0xff};
@@ -45,6 +46,6 @@ Image::~Image()
 
 void Image::dump()
 {
-	std::cout<<"width: "<<_width<<" height: "<<_height<<std::endl;
+	LX_LOG("width: %d, height: %d", _width, _height);
 }
 
