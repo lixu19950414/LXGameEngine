@@ -2,6 +2,7 @@
 #include "Director.h"
 #include "AutoReleasePool.h"
 #include "ShaderCache.h"
+#include <LXFileUtil/LXFileUtil.h>
 
 Director* g_pDirector = nullptr;
 
@@ -32,9 +33,10 @@ bool Director::mainLoop()
 
 bool Director::start()
 {
-	//Shader* s = new Shader();
-	//s->initWithByteArrays(vert, frag);
-	//s->dump();
+	/*Shader* s = new Shader();
+	s->initWithFiles("Res\\Shaders\\default.vert", "Res\\Shaders\\default.frag");
+	s->dump();*/
+
 	//glCreateShader(GL_VERTEX_SHADER);
 	/*Shader* shader = ShaderCache::getInstance()->getGlobalShader(ShaderCache::LX_SHADERS_PVM_DEFAULT);
 	shader->dump();*/

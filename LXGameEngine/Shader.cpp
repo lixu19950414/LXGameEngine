@@ -46,6 +46,8 @@ bool Shader::initWithFiles(const std::string & vertex, const std::string & frag)
 	std::string vertexSource = vertexData->getString();
 	std::string fragSource = fragData->getString();
 
+	delete vertexData;
+	delete fragData;
 	return initWithByteArrays(vertexSource.c_str(), fragSource.c_str());
 }
 
