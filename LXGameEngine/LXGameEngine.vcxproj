@@ -148,12 +148,15 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="LXGameEngine.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="PolygonInfo.cpp" />
     <ClCompile Include="Ref.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderCache.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LXGameEngine.rc" />
@@ -169,12 +172,15 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="LXGameEngine.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="PolygonInfo.h" />
     <ClInclude Include="Ref.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderCache.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lx_shaders_pvm_default.frag" />

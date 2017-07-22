@@ -12,10 +12,13 @@ public:
 	Node();
 	virtual ~Node();
 
-	/*virtual void visit();
-	virtual void draw();*/
+	virtual void visit(glm::mat4& parentTransform);
+	virtual void draw();
 protected:
 	glm::mat4 _transform;
+	glm::mat4 _modelTransform;
+	std::vector<Node*> _children;
+	Node* _parent;
 };
 
 #endif

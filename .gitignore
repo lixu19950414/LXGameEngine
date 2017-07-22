@@ -13,3 +13,5 @@
 *.idb
 *.pdb
 LXGameEngine/Debug/LXGameEngine.log
+*.log
+*.log

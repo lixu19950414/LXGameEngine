@@ -9,8 +9,10 @@ class Image
 public:
 	typedef enum ImageDataType
 	{
-		IMAGE_RGBA = 0,
+		IMAGE_DEFAULT = 0,
+		IMAGE_RGBA,
 		IMAGE_RGB,
+
 	}ImageDataType;
 
 	Image(std::string imageName, ImageDataType type=IMAGE_RGBA);
@@ -19,6 +21,8 @@ public:
 	inline unsigned char *getData() { return _imageData; };
 	inline int getWidth() { return _width; };
 	inline int getHeight() { return _height; };
+	inline bool getLoadSuccess() { return _loadSuccess; };
+	inline ImageDataType getDataType() { return _type; };
 	void dump();
 
 private:

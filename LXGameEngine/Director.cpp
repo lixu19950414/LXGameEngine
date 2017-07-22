@@ -2,6 +2,7 @@
 #include "Director.h"
 #include "AutoReleasePool.h"
 #include "ShaderCache.h"
+#include "Texture2D.h"
 #include <LXFileUtil/LXFileUtil.h>
 
 Director* g_pDirector = nullptr;
@@ -33,6 +34,17 @@ bool Director::mainLoop()
 
 bool Director::start()
 {
+	Texture2D* texture = new Texture2D();
+	texture->initWithFileName("Res/wall.jpg");
+	texture->dump();
+	texture->release();
+
+	Texture2D* texture2 = new Texture2D();
+	texture2->initWithFileName("Res/wall.jpg");
+	texture2->dump();
+
+	/*texture->initWithFileName("Res/wall.jpg", Image::IMAGE_RGB);
+	texture->dump();*/
 	/*Shader* s = new Shader();
 	s->initWithFiles("Res\\Shaders\\default.vert", "Res\\Shaders\\default.frag");
 	s->dump();*/
