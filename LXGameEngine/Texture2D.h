@@ -15,6 +15,7 @@ public:
 	inline GLint getPixelWidth() { return _pixelWidth; };
 	inline GLint getPixelHeight() { return _pixelHeight; };
 	inline Image::ImageDataType getDataType() { return _dataType; };
+	void bind();
 	void dump();
 private:
 	void releaseCurrentTexture();

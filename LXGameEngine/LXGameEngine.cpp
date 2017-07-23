@@ -37,7 +37,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	
-	window = glfwCreateWindow(atoi(config.getConf("winwidth").c_str()), atoi(config.getConf("winheight").c_str()), config.getConf("wintitle").c_str(), NULL, NULL);
+	GLuint winWidth = atoi(config.getConf("winwidth").c_str());
+	GLuint winHeight = atoi(config.getConf("winheight").c_str());
+
+	Director::getInstance()->setWinWidth(winWidth);
+	Director::getInstance()->setWinHeight(winHeight);
+	window = glfwCreateWindow(winWidth, winHeight, config.getConf("wintitle").c_str(), NULL, NULL);
 
 	if (!window)
 	{
@@ -49,11 +54,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	glClearColor(.0f, .0f, .0f, 1.0f);
 	
 	//GLEW初始化需要放到初始化GL上下文之后！！！
+	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
 	if (GLEW_OK != err) {
 		LX_LOG("GLEW Error: %s\n", glewGetErrorString(err));
 		exit(EXIT_FAILURE);
 	}
+
+	int width, height;
+	glfwGetFramebufferSize(window, &width, &height);
+	glViewport(0, 0, width, height);
 
 	if (!Director::getInstance()->start())
 	{
@@ -63,13 +73,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
-
-		glClear(GL_COLOR_BUFFER_BIT);
 		if (!Director::getInstance()->mainLoop()) {
 			break;
 		}
 		glfwSwapBuffers(window);
-
 		Sleep(1);
 	}
 

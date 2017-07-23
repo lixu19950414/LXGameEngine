@@ -19,6 +19,10 @@ protected:
 	glm::mat4 _modelTransform;
 	std::vector<Node*> _children;
 	Node* _parent;
+	GLuint _vao;
+	GLuint _vbo;
+	GLuint _ebo;
+
 };
 
 #endif

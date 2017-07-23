@@ -18,13 +18,15 @@ public:
 	PolygonInfo();
 	~PolygonInfo();
 	void clear();
-	inline void pushVert(V3F_C4B_T2F* vert) { _verts.push_back(vert); };
+	inline void pushVert(V3F_C4B_T2F vert) { _verts.push_back(vert); };
 	inline void pushIndices(GLint index) { _indices.push_back(index); };
 	inline int getVertsCount() { return _verts.size(); };
-	inline int getIndecesCount() { return _indices.size(); };
+	inline int getIndicesCount() { return _indices.size(); };
+	inline GLvoid* getVerts() { return &_verts[0]; };
+	inline GLvoid* getIndices() { return &_indices[0]; };
 private:
-	std::vector<V3F_C4B_T2F*> _verts;
-	std::vector<GLint> _indices;
+	std::vector<V3F_C4B_T2F> _verts;
+	std::vector<GLuint> _indices;
 };
 
 #endif

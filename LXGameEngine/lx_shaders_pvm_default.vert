@@ -9,6 +9,6 @@ uniform mat4 LX_MMATRIX;\n\
 void main() {\n\
 	v_texcoord = a_texcoord;\n\
 	v_color = a_color;\n\
-	gl_Position = LX_PMATRIX * LX_VMATRIX * LX_MMATRIX * vec4(a_position, 1.0);\n\
+	gl_Position = vec4(vec3(LX_PMATRIX * LX_VMATRIX * LX_MMATRIX * vec4(a_position, 1.0)), 1.0);\n\
 }\n\
 ";

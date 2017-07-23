@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Shader.h"
+#include "Camera.h"
 #include <LXFileUtil/LXFileUtil.h>
 
 const char * Shader::ATTRIB_NAME_POSITION = "a_position";
@@ -225,9 +226,10 @@ void Shader::use()
 
 void Shader::updateBuiltinUniforms(glm::mat4 model)
 {
-	glUniformMatrix4fv(getUniformLocation(UNIFORM_NAME_LX_MMATRIX), 1, GL_TRUE, glm::value_ptr(model));
-	glUniformMatrix4fv(getUniformLocation(UNIFORM_NAME_LX_VMATRIX), 1, GL_TRUE, glm::value_ptr(model));
-	glUniformMatrix4fv(getUniformLocation(UNIFORM_NAME_LX_PMATRIX), 1, GL_TRUE, glm::value_ptr(model));
+	auto instance = Camera::getInstance();
+	glUniformMatrix4fv(getUniformLocation(UNIFORM_NAME_LX_PMATRIX), 1, GL_FALSE, glm::value_ptr(instance->getProjectionMatrix()));
+	glUniformMatrix4fv(getUniformLocation(UNIFORM_NAME_LX_VMATRIX), 1, GL_FALSE, glm::value_ptr(instance->getViewMatrix()));
+	glUniformMatrix4fv(getUniformLocation(UNIFORM_NAME_LX_MMATRIX), 1, GL_FALSE, glm::value_ptr(model));
 }
 
 void Shader::clear()
