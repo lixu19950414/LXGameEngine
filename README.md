@@ -17,6 +17,6 @@
 - Nodes' contentsize.
 - BlendFunc.
 - glStateBlock.
-- Timer
-- Actions
-- Particles
+- Timer.
+- Actions.
+- Particles.
