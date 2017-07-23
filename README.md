@@ -13,6 +13,10 @@
 - Node transform and visit nodes.
 
 ## Plans
-- Scene
-- Blend
-- glStateBlock
+- Scene.
+- Nodes' contentsize.
+- BlendFunc.
+- glStateBlock.
+- Timer
+- Actions
+- Particles
