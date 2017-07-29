@@ -59,7 +59,7 @@ bool Director::start()
 	//sprite2->dump();
 	sprite2->setPosition(0, 0);
 	sprite2->setContentSize(256, 256);
-	//sprite2->autoRelease();
+	sprite2->autoRelease();
 	sprite->addChild(sprite2);
 	//sprite2->setRotation(-45.0f);
 	//sprite2->setScale(1.0f, 2.0f);
