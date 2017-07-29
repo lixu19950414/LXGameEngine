@@ -9,6 +9,7 @@
 Director* g_pDirector = nullptr;
 
 Sprite* g_Sprite = nullptr;
+Sprite* g_Sprite2 = nullptr;
 
 Director* Director::getInstance()
 {
@@ -33,6 +34,7 @@ bool Director::mainLoop()
 {
 	 glClear(GL_COLOR_BUFFER_BIT);
 	 g_Sprite->visit(glm::mat4());
+	 g_Sprite2->visit(glm::mat4());
 	
 	AutoReleasePool::getInstance()->executeClear();
 	return true;
@@ -45,10 +47,20 @@ bool Director::start()
 	sprite->initWithFile("Res/wall.jpg");
 	sprite->dump();
 	sprite->setPosition(512.0, 512.0f);
-	sprite->setRotation(-45.0f);
-	// sprite->setScale(1.0f, 2.0f);
+	//sprite->setRotation(-45.0f);
+	//sprite->setScale(1.0f, 2.0f);
 	sprite->visit(glm::mat4());
 	g_Sprite = sprite;
+
+	Sprite* sprite2 = new (std::nothrow) Sprite();
+	sprite2->initWithFile("Res/test.png");
+	sprite2->dump();
+	sprite2->setPosition(512.0, 512.0f);
+	//sprite2->setRotation(-45.0f);
+	//sprite2->setScale(1.0f, 2.0f);
+	sprite2->visit(glm::mat4());
+	g_Sprite2 = sprite2;
+
 	//sprite->autoRelease();
 	/*Texture2D* texture = new Texture2D();
 	texture->initWithFileName("Res/wall.jpg");
