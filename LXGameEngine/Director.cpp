@@ -9,7 +9,6 @@
 Director* g_pDirector = nullptr;
 
 Sprite* g_Sprite = nullptr;
-Sprite* g_Sprite2 = nullptr;
 
 Director* Director::getInstance()
 {
@@ -58,13 +57,18 @@ bool Director::start()
 	sprite2->initWithFile("Res/test.png");
 	//sprite2->dump();
 	sprite2->setPosition(0, 0);
-	sprite2->setContentSize(256, 256);
+	sprite2->setContentSize(512, 512);
 	sprite2->autoRelease();
+	sprite2->setLocalZ(-1);
 	sprite->addChild(sprite2);
-	//sprite2->setRotation(-45.0f);
-	//sprite2->setScale(1.0f, 2.0f);
-	//sprite2->visit(glm::mat4());
-	g_Sprite2 = sprite2;
+
+	Sprite* sprite3 = new (std::nothrow) Sprite();
+	sprite3->initWithFile("Res/test.png");
+	sprite3->setPosition(-512, -512);
+	sprite3->setContentSize(512, 512);
+	sprite3->autoRelease();
+	sprite3->setLocalZ(0);
+	sprite->addChild(sprite3);
 
 
 	//sprite->autoRelease();

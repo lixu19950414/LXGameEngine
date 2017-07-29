@@ -19,6 +19,10 @@ public:
 	void setPosition(GLfloat x, GLfloat y);
 	void setScale(GLfloat scaleX, GLfloat scaleY);
 	void setRotation(GLfloat rotate);
+	void setLocalZ(short localZ);
+	inline short getLocalZ() { return _localZ; };
+	void sortChildren();
+	inline void setNeedSortChildren() { _needSortChildren = true; };
 
 	inline std::vector<Node*> getChildren() { return _children; };
 	inline Node* getParent() { return _parent; };
@@ -34,6 +38,9 @@ protected:
 	GLfloat _rotation;
 	glm::vec3 _scale;
 	bool _transformDirty;
+	bool _needSortChildren;
+
+	short _localZ;
 
 	std::vector<Node*> _children;
 	Node* _parent;

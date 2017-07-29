@@ -11,7 +11,9 @@ _transformDirty(false),
 _parent(nullptr),
 _vao(0),
 _vbo(0),
-_ebo(0)
+_ebo(0),
+_needSortChildren(false),
+_localZ(0)
 {
 }
 
@@ -35,11 +37,23 @@ Node::~Node()
 
 void Node::visit(glm::mat4 & parentTransform)
 {
+	sortChildren();
 	updateTransform();
 	_modelTransform = parentTransform * _transform;
+	auto start = _children.begin();
+	// visit nodes with z < 0
+	for (; start != _children.end(); ++start) {
+		if ((*start)->getLocalZ() < 0) {
+			(*start)->visit(_modelTransform);
+		}
+		else{
+			break;
+		}
+	}
 	draw();
-	for (auto child : _children) {
-		child->visit(_modelTransform);
+	// visit nodes with z >= 0
+	for (; start != _children.end(); ++start) {
+		(*start)->visit(_modelTransform);
 	}
 }
 
@@ -71,6 +85,24 @@ void Node::setRotation(GLfloat rotate)
 {
 	_rotation = rotate;
 	_transformDirty = true;
+}
+
+void Node::setLocalZ(short localZ)
+{
+	_localZ = localZ;
+	if (_parent != nullptr) {
+		_parent->setNeedSortChildren();
+	}
+}
+
+bool sortChildrenFunc(Node* i, Node* j)
+{
+	return i->getLocalZ() < j->getLocalZ();
+}
+
+void Node::sortChildren()
+{
+	std::sort(_children.begin(), _children.end(), sortChildrenFunc);
 }
 
 void Node::updateTransform()
