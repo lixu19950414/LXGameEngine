@@ -11,13 +11,12 @@
 - Finished nodes' transform.
 - Finished sprites' anchor point and content size.
 - Finished visit nodes and nodes'addChild method.
+- Finished local zorder.
 
 ## Under construction
-- Local zorder
+- Scene.
 
 ## Plans
-- Scene.
-- Nodes' contentsize.
 - BlendFunc.
 - glStateBlock.
 - Timer.
