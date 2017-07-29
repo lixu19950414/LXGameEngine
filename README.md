@@ -8,9 +8,11 @@
 - Finished texture generating.
 - Finished sprites' vao & vbos setup.
 - Finished default ortho camera.
+- Finished nodes' transform.
+- Finished sprites' anchor point and content size.
 
 ## Under construction
-- Node transform and visit nodes.
+- Visit nodes.
 
 ## Plans
 - Scene.
