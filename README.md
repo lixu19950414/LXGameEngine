@@ -13,7 +13,7 @@
 - Finished visit nodes and nodes'addChild method.
 
 ## Under construction
-- Visit nodes.
+- Local zorder
 
 ## Plans
 - Scene.
