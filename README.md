@@ -10,6 +10,7 @@
 - Finished default ortho camera.
 - Finished nodes' transform.
 - Finished sprites' anchor point and content size.
+- Finished visit nodes and nodes'addChild method.
 
 ## Under construction
 - Visit nodes.
