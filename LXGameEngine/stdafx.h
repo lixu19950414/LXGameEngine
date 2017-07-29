@@ -28,6 +28,8 @@
 #include <LXFileUtil/LXFileUtil.h>
 #include <LXFileUtil/LXIni.h>
 
+#include <assert.h>
+
 #include <string>
 #include <iostream>
 #include <fstream>

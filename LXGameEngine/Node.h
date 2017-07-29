@@ -15,7 +15,7 @@ public:
 
 	virtual void visit(glm::mat4& parentTransform);
 	virtual void draw();
-	// virtual void addChild(Node* child);
+	virtual void addChild(Node* child);
 	void setPosition(GLfloat x, GLfloat y);
 	void setScale(GLfloat scaleX, GLfloat scaleY);
 	void setRotation(GLfloat rotate);

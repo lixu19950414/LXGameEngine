@@ -29,6 +29,7 @@ Node::~Node()
 	for (auto child : _children) {
 		child->release();
 	}
+	_children.clear();
 	_parent = nullptr;
 }
 
@@ -36,14 +37,22 @@ void Node::visit(glm::mat4 & parentTransform)
 {
 	updateTransform();
 	_modelTransform = parentTransform * _transform;
+	draw();
 	for (auto child : _children) {
 		child->visit(_modelTransform);
 	}
-	draw();
 }
 
 void Node::draw()
 {
+}
+
+void Node::addChild(Node * child)
+{
+	assert(child->_parent == nullptr);
+	_children.push_back(child);
+	child->retain();
+	child->_parent = this;
 }
 
 void Node::setPosition(GLfloat x, GLfloat y)
