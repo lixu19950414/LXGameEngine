@@ -51,7 +51,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 
 	glfwMakeContextCurrent(window);
-	glClearColor(.0f, .0f, .0f, 1.0f);
 	
 	//GLEW初始化需要放到初始化GL上下文之后！！！
 	glewExperimental = GL_TRUE;
@@ -64,6 +63,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	int width, height;
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
+
+	glClearColor(.0f, .0f, .0f, 1.0f);
 
 	if (!Director::getInstance()->start())
 	{
