@@ -7,7 +7,9 @@
 Sprite::Sprite() :
 _texture(nullptr),
 _shader(nullptr),
-_vertsDirty(true)
+_vertsDirty(true),
+_contentSize(0.0f, 0.0f),
+_anchorPoint(0.0f, 0.0f)
 {
 	_shader = ShaderCache::getInstance()->getGlobalShader(ShaderCache::LX_SHADERS_PVM_DEFAULT);
 	_shader->retain();
@@ -40,7 +42,7 @@ bool Sprite::initWithTexture(Texture2D * texture)
 	GLint pixelWidth = texture->getPixelWidth();
 	GLint pixelHeight = texture->getPixelHeight();
 
-	fillPolygonInfo(pixelWidth, pixelHeight);
+	setContentSize(pixelWidth, pixelHeight);
 	
 	return true;
 }
@@ -75,6 +77,18 @@ void Sprite::dump()
 	_texture->dump();
 }
 
+void Sprite::setContentSize(GLfloat width, GLfloat height)
+{
+	_contentSize = glm::vec2(width, height);
+	_vertsDirty = true;
+}
+
+void Sprite::setAnchorPoint(GLfloat x, GLfloat y)
+{
+	_anchorPoint = glm::vec2(x, y);
+	_vertsDirty = true;
+}
+
 void Sprite::releaseCurrentTexture()
 {
 	if (_texture != nullptr) {
@@ -82,13 +96,22 @@ void Sprite::releaseCurrentTexture()
 	}
 }
 
-void Sprite::fillPolygonInfo(GLint width, GLint height)
+void Sprite::fillPolygonInfo()
 {
+	GLfloat width = _contentSize.x;
+	GLfloat height = _contentSize.y;
+
+	GLfloat anchorX = _anchorPoint.x;
+	GLfloat anchorY = _anchorPoint.y;
+
+	GLfloat offSetX = -(width * anchorX);
+	GLfloat offSetY = -(height * anchorY);
+
 	_polyInfo.clear();
-	_lb.setVertices(.0f, .0f, .0f);
-	_lt.setVertices(.0f, (GLfloat)height, .0f);
-	_rb.setVertices((GLfloat)width, .0f, .0f);
-	_rt.setVertices((GLfloat)width, (GLfloat)height, .0f);
+	_lb.setVertices(offSetX, offSetY, .0f);
+	_lt.setVertices(offSetX, height + offSetY, .0f);
+	_rb.setVertices(width + offSetX, offSetY, .0f);
+	_rt.setVertices(width + offSetX, height +  offSetY, .0f);
 
 	_lb.setColor(255, 255, 255, 255);
 	_lt.setColor(255, 255, 255, 255);
@@ -118,6 +141,8 @@ void Sprite::fillPolygonInfo(GLint width, GLint height)
 void Sprite::setupVAOAndVBO()
 {
 	if (_vao == 0) {
+		fillPolygonInfo();
+
 		glGenVertexArrays(1, &_vao);
 		glGenBuffers(1, &_vbo);
 		glGenBuffers(1, &_ebo);
@@ -137,6 +162,8 @@ void Sprite::setupVAOAndVBO()
 		glBindVertexArray(0);
 	}
 	else if(_vertsDirty){
+		fillPolygonInfo();
+
 		glBindVertexArray(_vao);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 		glBufferData(GL_ARRAY_BUFFER, _polyInfo.getVertsCount() * sizeof(V3F_C4B_T2F), _polyInfo.getVerts(), GL_DYNAMIC_DRAW);

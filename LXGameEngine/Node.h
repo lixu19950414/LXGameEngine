@@ -22,11 +22,14 @@ public:
 
 	inline std::vector<Node*> getChildren() { return _children; };
 	inline Node* getParent() { return _parent; };
+
 protected:
 	void updateTransform();
 protected:
-	glm::mat4 _transform;
 	glm::mat4 _modelTransform;
+
+	// transform
+	glm::mat4 _transform;
 	glm::vec3 _position;
 	GLfloat _rotation;
 	glm::vec3 _scale;

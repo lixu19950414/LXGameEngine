@@ -47,8 +47,9 @@ bool Director::start()
 	sprite->initWithFile("Res/wall.jpg");
 	sprite->dump();
 	sprite->setPosition(512.0, 512.0f);
-	//sprite->setRotation(-45.0f);
-	//sprite->setScale(1.0f, 2.0f);
+	sprite->setAnchorPoint(0.5f, 0.5f);
+	sprite->setRotation(-45.0f);
+	sprite->setScale(1.0f, 2.0f);
 	sprite->visit(glm::mat4());
 	g_Sprite = sprite;
 
@@ -56,6 +57,7 @@ bool Director::start()
 	sprite2->initWithFile("Res/test.png");
 	sprite2->dump();
 	sprite2->setPosition(512.0, 512.0f);
+	sprite2->setContentSize(512.0f, 512.0f);
 	//sprite2->setRotation(-45.0f);
 	//sprite2->setScale(1.0f, 2.0f);
 	sprite2->visit(glm::mat4());

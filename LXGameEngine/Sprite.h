@@ -15,11 +15,17 @@ public:
 	bool initWithTexture(Texture2D* texture);
 	virtual void draw() override;
 	void dump();
+	void setContentSize(GLfloat width, GLfloat height);
+	void setAnchorPoint(GLfloat x, GLfloat y);
+
 protected:
+	// verts
+	glm::vec2 _contentSize;
+	glm::vec2 _anchorPoint;
 	bool _vertsDirty;
 private:
 	void releaseCurrentTexture();
-	void fillPolygonInfo(GLint width, GLint height);
+	void fillPolygonInfo();
 	void setupVAOAndVBO();
 private:
 	V3F_C4B_T2F _lb;
