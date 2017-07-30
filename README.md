@@ -13,14 +13,14 @@
 - Finished visit nodes and nodes'addChild method.
 - Finished local zorder.
 - Finished sprites' opacity and color.
+- Finished main scene.
 
 ## Under construction
-- Scene.
+- Mouse and keyboard events.
 
 ## Plans
 - BlendFunc.
 - glStateBlock.
-- Mouse and keyboard events.
 - Timer.
 - Actions.
 - Particles.
