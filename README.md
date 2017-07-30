@@ -15,7 +15,6 @@
 
 ## Under construction
 - Scene.
-- Sprites' Opacity.
 
 ## Plans
 - BlendFunc.
