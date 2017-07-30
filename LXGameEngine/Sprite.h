@@ -18,6 +18,7 @@ public:
 	void setContentSize(GLfloat width, GLfloat height);
 	void setAnchorPoint(GLfloat x, GLfloat y);
 	void setOpacity(GLubyte opacity);
+	void setColor(GLubyte r, GLubyte g, GLubyte b);
 
 protected:
 	// verts
@@ -28,6 +29,7 @@ protected:
 	Texture2D* _texture;
 	Shader* _shader;
 	GLubyte _opacity;
+	GLubyte _color[3];
 private:
 	void releaseCurrentTexture();
 	void fillPolygonInfo();

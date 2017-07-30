@@ -12,6 +12,7 @@ _contentSize(0.0f, 0.0f),
 _anchorPoint(0.0f, 0.0f),
 _opacity(255)
 {
+	_color[0] = _color[1] = _color[2] = 255;
 	_shader = ShaderCache::getInstance()->getGlobalShader(ShaderCache::LX_SHADERS_PVM_DEFAULT);
 	_shader->retain();
 }
@@ -105,6 +106,16 @@ void Sprite::setOpacity(GLubyte opacity)
 	}
 }
 
+void Sprite::setColor(GLubyte r, GLubyte g, GLubyte b)
+{
+	if (_color[0] != r || _color[1] != g || _color[2] != b) {
+		_color[0] = r;
+		_color[1] = g;
+		_color[2] = b;
+		_vertsDirty = true;
+	}
+}
+
 void Sprite::releaseCurrentTexture()
 {
 	if (_texture != nullptr) {
@@ -129,10 +140,10 @@ void Sprite::fillPolygonInfo()
 	_rb.setVertices(width + offSetX, offSetY, .0f);
 	_rt.setVertices(width + offSetX, height +  offSetY, .0f);
 
-	_lb.setColor(255, 255, 255, _opacity);
-	_lt.setColor(255, 255, 255, _opacity);
-	_rb.setColor(255, 255, 255, _opacity);
-	_rt.setColor(255, 255, 255, _opacity);
+	_lb.setColor(_color[0], _color[1], _color[2], _opacity);
+	_lt.setColor(_color[0], _color[1], _color[2], _opacity);
+	_rb.setColor(_color[0], _color[1], _color[2], _opacity);
+	_rt.setColor(_color[0], _color[1], _color[2], _opacity);
 
 	_lb.setUV(.0f, .0f);
 	_lt.setUV(.0f, 1.0f);

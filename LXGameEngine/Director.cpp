@@ -68,6 +68,7 @@ bool Director::start()
 	sprite3->initWithFile("Res/test.png");
 	sprite3->setPosition(-512, -512);
 	sprite3->setContentSize(512, 512);
+	sprite3->setColor(0, 255, 0);
 	sprite3->setOpacity(100);
 	sprite3->autoRelease();
 	sprite3->setLocalZ(0);
