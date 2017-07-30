@@ -20,6 +20,7 @@
 ## Plans
 - BlendFunc.
 - glStateBlock.
+- Mouse and keyboard events.
 - Timer.
 - Actions.
 - Particles.
