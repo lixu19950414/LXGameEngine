@@ -19,6 +19,9 @@
     <Filter Include="头文件\base">
       <UniqueIdentifier>{b22025e3-95da-40eb-9e42-460177961024}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\base">
+      <UniqueIdentifier>{967781d1-55e9-424d-b78e-ad2ea7207e9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -37,9 +40,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Ref.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="AutoReleasePool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Node.cpp">
@@ -69,6 +69,9 @@
     <ClCompile Include="GLView.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="AutoReleasePool.cpp">
+      <Filter>源文件\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LXGameEngine.rc">
@@ -94,9 +97,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Ref.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="AutoReleasePool.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
@@ -137,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="GLView.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoReleasePool.h">
+      <Filter>头文件\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

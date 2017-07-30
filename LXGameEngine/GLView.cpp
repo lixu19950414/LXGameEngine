@@ -27,6 +27,44 @@ _window(nullptr)
 	GLuint winHeight = atoi(config.getConf("winheight").c_str());
 	
 	_window = glfwCreateWindow(winWidth, winHeight, config.getConf("wintitle").c_str(), NULL, NULL);
+	
+	//Setup callbakcs
+	glfwSetMouseButtonCallback(_window, GLView::mouse_button_callback);
+	glfwSetKeyCallback(_window, GLView::key_callback);
+	glfwSetCursorPosCallback(_window, GLView::cursor_position_callback);
+}
+
+void GLView::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	int x = (int)xpos;
+	int y = Director::getInstance()->getWinHeight() - (int)ypos;
+	LX_LOG("Mouse move: %d, %d\n", x, y);
+}
+
+void GLView::mouse_button_callback(GLFWwindow * window, int button, int action, int mods)
+{
+	// GLFW_PRESS or GLFW_RELEASE 
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	{
+		double xpos, ypos;
+		glfwGetCursorPos(window, &xpos, &ypos);
+		int x = (int)xpos;
+		int y = Director::getInstance()->getWinHeight() - (int)ypos;
+		LX_LOG("Press mouse left: %d, %d\n", x, y);
+	}
+}
+
+
+void GLView::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_UNKNOWN)
+		return;
+
+	// GLFW_PRESS, GLFW_REPEAT or GLFW_RELEASE
+	if (key == GLFW_KEY_E && action == GLFW_PRESS) {
+
+	}
+		
 }
 
 
