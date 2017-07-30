@@ -12,6 +12,7 @@
 - Finished sprites' anchor point and content size.
 - Finished visit nodes and nodes'addChild method.
 - Finished local zorder.
+- Finished sprites' opacity.
 
 ## Under construction
 - Scene.
