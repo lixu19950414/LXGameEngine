@@ -1,3 +1,4 @@
-﻿  Director.cpp
+﻿  Sprite.cpp
+c:\projects\lxgameengine\lxgameengine\lxgameengine\sprite.cpp(46): warning C4244: “参数”: 从“GLint”转换到“GLfloat”，可能丢失数据
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.exe
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.pdb (Partial PDB)

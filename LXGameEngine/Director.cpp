@@ -42,6 +42,8 @@ bool Director::mainLoop()
 bool Director::start()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	Sprite* sprite = new (std::nothrow) Sprite();
 	sprite->initWithFile("Res/wall.jpg");
 	//sprite->dump();
@@ -66,6 +68,7 @@ bool Director::start()
 	sprite3->initWithFile("Res/test.png");
 	sprite3->setPosition(-512, -512);
 	sprite3->setContentSize(512, 512);
+	sprite3->setOpacity(100);
 	sprite3->autoRelease();
 	sprite3->setLocalZ(0);
 	sprite->addChild(sprite3);

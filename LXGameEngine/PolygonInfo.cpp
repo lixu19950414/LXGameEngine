@@ -40,6 +40,11 @@ bool V3F_C4B_T2F::setColor(GLubyte r, GLubyte g, GLubyte b, GLubyte a)
 	return true;
 }
 
+GLubyte * V3F_C4B_T2F::getColor()
+{
+	return _color;
+}
+
 bool V3F_C4B_T2F::setUV(GLfloat u, GLfloat v)
 {
 	_uv[0] = u;

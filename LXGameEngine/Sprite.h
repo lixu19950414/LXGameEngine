@@ -17,12 +17,17 @@ public:
 	void dump();
 	void setContentSize(GLfloat width, GLfloat height);
 	void setAnchorPoint(GLfloat x, GLfloat y);
+	void setOpacity(GLubyte opacity);
 
 protected:
 	// verts
 	glm::vec2 _contentSize;
 	glm::vec2 _anchorPoint;
 	bool _vertsDirty;
+	PolygonInfo _polyInfo;
+	Texture2D* _texture;
+	Shader* _shader;
+	GLubyte _opacity;
 private:
 	void releaseCurrentTexture();
 	void fillPolygonInfo();
@@ -32,9 +37,6 @@ private:
 	V3F_C4B_T2F _lt;
 	V3F_C4B_T2F _rb;
 	V3F_C4B_T2F _rt;
-	PolygonInfo _polyInfo;
-	Texture2D* _texture;
-	Shader* _shader;
 };
 
 #endif

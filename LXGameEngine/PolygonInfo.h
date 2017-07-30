@@ -6,6 +6,7 @@ struct V3F_C4B_T2F {
 	V3F_C4B_T2F();
 	bool setVertices(GLfloat x, GLfloat y, GLfloat z);
 	bool setColor(GLubyte r, GLubyte g, GLubyte b, GLubyte a);
+	GLubyte* getColor();
 	bool setUV(GLfloat u, GLfloat v);
 	GLfloat _vertices[3];
 	GLubyte _color[4];
