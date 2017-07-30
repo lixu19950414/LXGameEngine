@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "LXGameEngine.h"
 #include "Director.h"
+#include "GLView.h"
 
 
 
@@ -24,25 +25,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	// Init paths
 	LX_FU::setPathPrefix("C:\\Projects\\LXGameEngine\\LXGameEngine\\Resources");
-	LX_FU::INI::IniConfig config;
-	config.loadFromFile("PlatformConfig.ini");
-
-	GLFWwindow* window;
 
 	if (!glfwInit())
 		exit(EXIT_FAILURE);	
 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-	
-	GLuint winWidth = atoi(config.getConf("winwidth").c_str());
-	GLuint winHeight = atoi(config.getConf("winheight").c_str());
-
-	Director::getInstance()->setWinWidth(winWidth);
-	Director::getInstance()->setWinHeight(winHeight);
-	window = glfwCreateWindow(winWidth, winHeight, config.getConf("wintitle").c_str(), NULL, NULL);
+	GLFWwindow* window = GLView::getInstance()->getWindow();
 
 	if (!window)
 	{
@@ -63,6 +50,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	int width, height;
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
+	Director::getInstance()->setWinWidth(width);
+	Director::getInstance()->setWinHeight(height);
 
 	glClearColor(.0f, .0f, .0f, 1.0f);
 
@@ -81,7 +70,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		Sleep(1);
 	}
 
-	glfwDestroyWindow(window);
+	GLView::getInstance()->release();
+
 	glfwTerminate();
 	exit(EXIT_SUCCESS);
 

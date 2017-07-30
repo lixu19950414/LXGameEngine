@@ -146,6 +146,7 @@
     <ClCompile Include="AutoReleasePool.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Director.cpp" />
+    <ClCompile Include="GLView.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="LXGameEngine.cpp" />
     <ClCompile Include="Node.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Director.h" />
+    <ClInclude Include="GLView.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="LXGameEngine.h" />
     <ClInclude Include="Node.h" />
