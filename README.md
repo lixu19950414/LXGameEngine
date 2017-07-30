@@ -16,12 +16,11 @@
 - Finished main scene.
 
 ## Under construction
-
+- Mouse and keyboard events.
 
 ## Plans
 - BlendFunc.
 - glStateBlock.
-- Mouse and keyboard events.
 - Timer.
 - Actions.
 - Particles.
