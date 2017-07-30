@@ -13,9 +13,10 @@
 - Finished visit nodes and nodes'addChild method.
 - Finished local zorder.
 - Finished sprites' opacity and color.
+- Finished main scene.
 
 ## Under construction
-- Scene.
+
 
 ## Plans
 - BlendFunc.
