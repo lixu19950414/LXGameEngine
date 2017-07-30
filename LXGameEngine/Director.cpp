@@ -5,10 +5,9 @@
 #include "ShaderCache.h"
 #include "Texture2D.h"
 #include "Sprite.h"
+#include "Scene.h"
 
 Director* g_pDirector = nullptr;
-
-Sprite* g_Sprite = nullptr;
 
 Director* Director::getInstance()
 {
@@ -31,9 +30,8 @@ Director::~Director()
 
 bool Director::mainLoop()
 {
-	 glClear(GL_COLOR_BUFFER_BIT);
-	 g_Sprite->visit(glm::mat4());
-	 //g_Sprite2->visit(glm::mat4());
+	glClear(GL_COLOR_BUFFER_BIT);
+	Scene::getInstance()->visit();
 	
 	AutoReleasePool::getInstance()->executeClear();
 	return true;
@@ -44,6 +42,9 @@ bool Director::start()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	auto scene = Scene::getInstance();
+
 	Sprite* sprite = new (std::nothrow) Sprite();
 	sprite->initWithFile("Res/wall.jpg");
 	//sprite->dump();
@@ -53,7 +54,7 @@ bool Director::start()
 	//sprite->setRotation(-45.0f);
 	//sprite->setScale(1.0f, 2.0f);
 	//sprite->visit(glm::mat4());
-	g_Sprite = sprite;
+	scene->addChild(sprite);
 
 	Sprite* sprite2 = new (std::nothrow) Sprite();
 	sprite2->initWithFile("Res/test.png");

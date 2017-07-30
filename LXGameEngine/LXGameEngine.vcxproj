@@ -151,6 +151,7 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PolygonInfo.cpp" />
     <ClCompile Include="Ref.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderCache.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="PolygonInfo.h" />
     <ClInclude Include="Ref.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderCache.h" />
     <ClInclude Include="Sprite.h" />

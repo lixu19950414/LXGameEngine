@@ -1,3 +1,8 @@
-﻿  Director.cpp
+﻿  Scene.cpp
+  Director.cpp
+  正在生成代码...
+LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+LINK : warning LNK4098: 默认库“MSVCRT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“glew32s.lib(glew.obj)”或在“C:\Projects\LXGameEngine\LXGameEngine\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.exe
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.pdb (Partial PDB)
