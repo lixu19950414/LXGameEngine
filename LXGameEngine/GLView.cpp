@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "GLView.h"
 #include "Director.h"
+#include "Camera.h"
+#include "Scene.h"
 
 GLView *g_GLView = nullptr;
 
@@ -38,7 +40,7 @@ void GLView::cursor_position_callback(GLFWwindow* window, double xpos, double yp
 {
 	int x = (int)xpos;
 	int y = Director::getInstance()->getWinHeight() - (int)ypos;
-	LX_LOG("Mouse move: %d, %d\n", x, y);
+	// LX_LOG("Mouse move: %d, %d\n", x, y);
 }
 
 void GLView::mouse_button_callback(GLFWwindow * window, int button, int action, int mods)
@@ -50,7 +52,11 @@ void GLView::mouse_button_callback(GLFWwindow * window, int button, int action, 
 		glfwGetCursorPos(window, &xpos, &ypos);
 		int x = (int)xpos;
 		int y = Director::getInstance()->getWinHeight() - (int)ypos;
+		// glm::vec4 pos = glm::inverse(Camera::getInstance()->getViewMatrix()) * glm::vec4(x, y, 0.0f, 1.0f);
 		LX_LOG("Press mouse left: %d, %d\n", x, y);
+		auto scene = Scene::getInstance();
+		scene->touch(x, y);
+		// LX_LOG("Press mouse leftwithview: %d, %d\n", pos.x, pos.y);
 	}
 }
 

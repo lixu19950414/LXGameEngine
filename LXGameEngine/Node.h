@@ -1,9 +1,10 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include "stdafx.h"
 #include "Ref.h"
 #include "Rect.h"
-#include "stdafx.h"
+
 
 class Node : public Ref
 {
@@ -29,8 +30,14 @@ public:
 	virtual void setAnchorPoint(GLfloat x, GLfloat y);
 	virtual void setOpacity(GLubyte opacity);
 
+	virtual bool touch(int x, int y);
+	virtual bool onTouch(int x, int y);
+	virtual void handleTouch(int x, int y);
+	inline void setSwallowTouches(bool b) { _swallowTouches = b; };
+
 protected:
 	void updateTransform();
+	virtual void updateAABB();
 protected:
 	glm::mat4 _modelTransform;
 
@@ -39,8 +46,12 @@ protected:
 	glm::vec3 _position;
 	GLfloat _rotation;
 	glm::vec3 _scale;
-	bool _transformDirty;
 	bool _needSortChildren;
+	AABB _aabb;
+
+	// dirty
+	bool _transformDirty;
+	bool _aabbDirty;
 
 	short _localZ;
 
@@ -55,6 +66,7 @@ protected:
 	glm::vec2 _anchorPoint;
 	GLubyte _opacity;
 
+	bool _swallowTouches;
 };
 
 #endif

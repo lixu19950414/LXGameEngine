@@ -31,7 +31,7 @@ bool Director::mainLoop()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	Scene::getInstance()->visit();
-	
+	// static_cast<Sprite*>(Scene::getInstance()->getChildren().at(0))->dump();
 	AutoReleasePool::getInstance()->executeClear();
 	return true;
 }
@@ -50,6 +50,7 @@ bool Director::start()
 	sprite->setContentSize(512, 512);
 	sprite->setPosition(512.0, 512.0f);
 	sprite->setAnchorPoint(0.5f, 0.5f);
+	sprite->setSwallowTouches(true);
 	//sprite->setRotation(-45.0f);
 	//sprite->setScale(1.0f, 2.0f);
 	//sprite->visit(glm::mat4());
@@ -57,7 +58,6 @@ bool Director::start()
 
 	Sprite* sprite2 = new (std::nothrow) Sprite();
 	sprite2->initWithFile("Res/test.png");
-	//sprite2->dump();
 	sprite2->setPosition(0, 0);
 	sprite2->setContentSize(512, 512);
 	sprite2->autoRelease();

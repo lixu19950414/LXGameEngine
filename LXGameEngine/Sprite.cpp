@@ -73,6 +73,7 @@ void Sprite::dump()
 {
 	LX_LOG("Sprite::Dump\n");
 	_texture->dump();
+	LX_LOG("AABB: origin(%d, %d) size(%d, %d)\n", _aabb.getOrigin().x, _aabb.getOrigin().y, _aabb.getSize().x, _aabb.getSize().y);
 }
 
 void Sprite::setContentSize(GLfloat width, GLfloat height)
@@ -81,6 +82,7 @@ void Sprite::setContentSize(GLfloat width, GLfloat height)
 	{
 		_contentSize = glm::vec2(width, height);
 		_vertsDirty = true;
+		_aabbDirty = true;
 	}
 }
 
@@ -90,6 +92,7 @@ void Sprite::setAnchorPoint(GLfloat x, GLfloat y)
 	{
 		_anchorPoint = glm::vec2(x, y);
 		_vertsDirty = true;
+		_aabbDirty = true;
 	}
 }
 
@@ -157,8 +160,6 @@ void Sprite::fillPolygonInfo()
 	_polyInfo.pushIndices(0);
 	_polyInfo.pushIndices(2);
 	_polyInfo.pushIndices(3);
-
-	_vertsDirty = true;
 }
 
 void Sprite::setupVAOAndVBO()
