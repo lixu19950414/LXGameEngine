@@ -2,7 +2,6 @@
 #include "Sprite.h"
 #include "ShaderCache.h"
 #include "Camera.h"
-#include <vector>
 
 Sprite::Sprite() :
 _texture(nullptr),

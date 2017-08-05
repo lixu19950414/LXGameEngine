@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Camera.h"
 #include "Director.h"
-#include <LXFileUtil/LXIni.h>
 
 Camera * g_pCamera = nullptr;
 

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Shader.h"
 #include "Camera.h"
-#include <LXFileUtil/LXFileUtil.h>
 
 const char * Shader::ATTRIB_NAME_POSITION = "a_position";
 const char * Shader::ATTRIB_NAME_COLOR = "a_color";

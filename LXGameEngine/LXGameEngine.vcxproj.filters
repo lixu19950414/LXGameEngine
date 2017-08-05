@@ -72,6 +72,9 @@
     <ClCompile Include="AutoReleasePool.cpp">
       <Filter>源文件\base</Filter>
     </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LXGameEngine.rc">
@@ -140,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="AutoReleasePool.h">
       <Filter>头文件\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

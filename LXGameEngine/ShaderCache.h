@@ -2,7 +2,7 @@
 #define SHADER_CACHE_H
 
 #include "Shader.h"
-#include <vector>
+#include "stdafx.h"
 
 class ShaderCache
 {

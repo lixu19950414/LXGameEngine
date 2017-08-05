@@ -2,10 +2,8 @@
 #define NODE_H
 
 #include "Ref.h"
-#include <glm/mat4x4.hpp>
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include "Rect.h"
+#include "stdafx.h"
 
 class Node : public Ref
 {

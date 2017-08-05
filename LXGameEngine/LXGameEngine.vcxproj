@@ -151,6 +151,7 @@
     <ClCompile Include="LXGameEngine.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PolygonInfo.cpp" />
+    <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Ref.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="LXGameEngine.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PolygonInfo.h" />
+    <ClInclude Include="Rect.h" />
     <ClInclude Include="Ref.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />

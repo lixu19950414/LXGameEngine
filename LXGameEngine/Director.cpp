@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Director.h"
 #include "AutoReleasePool.h"
-#include <LXFileUtil/LXFileUtil.h>
 #include "ShaderCache.h"
 #include "Texture2D.h"
 #include "Sprite.h"

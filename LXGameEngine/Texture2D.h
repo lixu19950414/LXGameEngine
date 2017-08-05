@@ -3,6 +3,7 @@
 
 #include "Ref.h"
 #include "Image.h"
+
 class Texture2D :
 	public Ref
 {

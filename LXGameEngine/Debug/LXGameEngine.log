@@ -1,10 +1,6 @@
 ﻿  Sprite.cpp
-c:\projects\lxgameengine\lxgameengine\lxgameengine\sprite.cpp(44): warning C4244: “参数”: 从“GLint”转换到“GLfloat”，可能丢失数据
-  Node.cpp
-  正在生成代码...
-  正在编译...
-  Scene.cpp
-  Director.cpp
+c:\projects\lxgameengine\lxgameengine\lxgameengine\sprite.cpp(43): warning C4244: “参数”: 从“GLint”转换到“GLfloat”，可能丢失数据
+  Shader.cpp
   正在生成代码...
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.exe
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.pdb (Partial PDB)
