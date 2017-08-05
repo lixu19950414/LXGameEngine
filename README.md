@@ -14,6 +14,7 @@
 - Finished local zorder.
 - Finished sprites' opacity and color.
 - Finished main scene.
+- Finished rect.
 
 ## Under construction
 - Mouse and keyboard events.
