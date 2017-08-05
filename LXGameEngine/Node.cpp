@@ -13,7 +13,10 @@ _vao(0),
 _vbo(0),
 _ebo(0),
 _needSortChildren(false),
-_localZ(0)
+_localZ(0),
+_contentSize(0.0f, 0.0f),
+_anchorPoint(0.0f, 0.0f),
+_opacity(255)
 {
 }
 
@@ -103,6 +106,21 @@ bool sortChildrenFunc(Node* i, Node* j)
 void Node::sortChildren()
 {
 	std::sort(_children.begin(), _children.end(), sortChildrenFunc);
+}
+
+void Node::setContentSize(GLfloat width, GLfloat height)
+{
+	_contentSize = glm::vec2(width, height);
+}
+
+void Node::setAnchorPoint(GLfloat x, GLfloat y)
+{
+	_anchorPoint = glm::vec2(x, y);
+}
+
+void Node::setOpacity(GLubyte opacity)
+{
+	_opacity = opacity;
 }
 
 void Node::updateTransform()

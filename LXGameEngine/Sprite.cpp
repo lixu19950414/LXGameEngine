@@ -7,10 +7,7 @@
 Sprite::Sprite() :
 _texture(nullptr),
 _shader(nullptr),
-_vertsDirty(true),
-_contentSize(0.0f, 0.0f),
-_anchorPoint(0.0f, 0.0f),
-_opacity(255)
+_vertsDirty(true)
 {
 	_color[0] = _color[1] = _color[2] = 255;
 	_shader = ShaderCache::getInstance()->getGlobalShader(ShaderCache::LX_SHADERS_PVM_DEFAULT);

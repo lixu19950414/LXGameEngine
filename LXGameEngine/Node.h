@@ -27,6 +27,10 @@ public:
 	inline std::vector<Node*> getChildren() { return _children; };
 	inline Node* getParent() { return _parent; };
 
+	virtual void setContentSize(GLfloat width, GLfloat height);
+	virtual void setAnchorPoint(GLfloat x, GLfloat y);
+	virtual void setOpacity(GLubyte opacity);
+
 protected:
 	void updateTransform();
 protected:
@@ -48,6 +52,10 @@ protected:
 	GLuint _vao;
 	GLuint _vbo;
 	GLuint _ebo;
+
+	glm::vec2 _contentSize;
+	glm::vec2 _anchorPoint;
+	GLubyte _opacity;
 
 };
 
