@@ -15,9 +15,11 @@
 - Finished sprites' opacity and color.
 - Finished main scene.
 - Finished rect.
+- Finished mouse events with scene graph priority.
 
 ## Under construction
-- Mouse and keyboard events.
+- UI buttons.
+- Keyboard events.
 
 ## Plans
 - BlendFunc.
