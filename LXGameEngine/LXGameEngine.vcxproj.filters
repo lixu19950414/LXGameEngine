@@ -22,6 +22,18 @@
     <Filter Include="源文件\base">
       <UniqueIdentifier>{967781d1-55e9-424d-b78e-ad2ea7207e9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ui">
+      <UniqueIdentifier>{4dd37e92-5b9b-411a-bd48-ea6e1dff8739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ui">
+      <UniqueIdentifier>{d31653da-8cf9-448c-9463-f3bbff682870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\game">
+      <UniqueIdentifier>{553cc784-f153-478f-b7a3-4aa069746d42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\game">
+      <UniqueIdentifier>{2fd27988-750b-4492-8356-3fd20154b4d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -74,6 +86,12 @@
     </ClCompile>
     <ClCompile Include="Rect.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>源文件\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +164,12 @@
     </ClInclude>
     <ClInclude Include="Rect.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>头文件\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

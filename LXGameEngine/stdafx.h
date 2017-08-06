@@ -42,6 +42,7 @@
 #include <unordered_map>
 #include <set>
 #include <unordered_set>
+#include <functional>
 
 #include <glm/mat2x2.hpp>
 #include <glm/mat3x3.hpp>
