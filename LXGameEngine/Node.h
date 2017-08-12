@@ -35,6 +35,8 @@ public:
 	virtual void handleTouch(int x, int y);
 	inline void setSwallowTouches(bool b) { _swallowTouches = b; };
 
+	virtual glm::vec2 convertToNodeSpace(int x, int y);
+
 protected:
 	void updateTransform();
 	virtual void updateAABB();

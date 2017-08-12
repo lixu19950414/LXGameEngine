@@ -171,7 +171,14 @@ bool Node::onTouch(int x, int y)
 
 void Node::handleTouch(int x, int y)
 {
-	LX_LOG("touch %d, %d\n", x, y);
+	// LX_LOG("touch %d, %d\n", x, y);
+}
+
+glm::vec2 Node::convertToNodeSpace(int x, int y)
+{
+	glm::mat4 im = glm::inverse(_modelTransform);
+	glm::vec4 position = im * (glm::vec4((float)x, (float)y, 0.0f, 1.0f));
+	return glm::vec2(position);
 }
 
 
