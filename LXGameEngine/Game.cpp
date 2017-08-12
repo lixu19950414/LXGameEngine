@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Scene.h"
 #include "Sprite.h"
+#include "Button.h"
 
 Game * g_Game = nullptr;
 
@@ -20,8 +21,9 @@ bool Game::start()
 {
 	auto scene = Scene::getInstance();
 
-	Sprite* sprite = new (std::nothrow) Sprite();
+	Button* sprite = new (std::nothrow) Button();
 	sprite->initWithFile("Res/wall.jpg");
+	sprite->setCallback([](int x, int y) {LX_LOG("Button::%d, %d\n", x, y)});
 	//sprite->dump();
 	sprite->setContentSize(512, 512);
 	sprite->setPosition(512.0, 512.0f);
