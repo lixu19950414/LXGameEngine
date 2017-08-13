@@ -9,7 +9,7 @@ public:
 	Button();
 	~Button();
 
-	void handleTouch(int x, int y) override;
+	bool onTouchBegin(int x, int y) override;
 	inline void setCallback(std::function<void(int x, int y)> callback) { _callback = callback; };
 protected:
 	std::function<void(int x, int y)> _callback;

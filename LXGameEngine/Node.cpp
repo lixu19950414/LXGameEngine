@@ -162,16 +162,26 @@ bool Node::touch(int x, int y)
 bool Node::onTouch(int x, int y)
 {
 	if (_aabb.containPoint(x, y)) {
-		handleTouch(x, y);
+		onTouchBegin(x, y);
 		if (_swallowTouches)
 			return true;
 	}
 	return false;
 }
 
-void Node::handleTouch(int x, int y)
+bool Node::onTouchBegin(int x, int y)
 {
 	// LX_LOG("touch %d, %d\n", x, y);
+	return false;
+}
+
+void Node::onTouchMove(int x, int y)
+{
+	
+}
+
+void Node::onTouchEnd(int x, int y)
+{
 }
 
 glm::vec2 Node::convertToNodeSpace(int x, int y)

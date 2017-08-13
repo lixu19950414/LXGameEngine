@@ -32,8 +32,11 @@ public:
 
 	virtual bool touch(int x, int y);
 	virtual bool onTouch(int x, int y);
-	virtual void handleTouch(int x, int y);
+
 	inline void setSwallowTouches(bool b) { _swallowTouches = b; };
+	virtual bool onTouchBegin(int x, int y);
+	virtual void onTouchMove(int x, int y);
+	virtual void onTouchEnd(int x, int y);
 
 	virtual glm::vec2 convertToNodeSpace(int x, int y);
 

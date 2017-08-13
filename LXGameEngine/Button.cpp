@@ -7,13 +7,14 @@ Button::Button():
 {
 }
 
-void Button::handleTouch(int x, int y)
-{
-	if (_callback)
-		_callback(x, y);
-}
-
 
 Button::~Button()
 {
+}
+
+bool Button::onTouchBegin(int x, int y)
+{
+	if (_callback)
+		_callback(x, y);
+	return false;
 }
