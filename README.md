@@ -15,10 +15,11 @@
 - Finished sprites' opacity and color.
 - Finished main scene.
 - Finished rect.
-- Finished mouse events with scene graph priority.
+- Finished mouse events with scene graph priority.(onTouchBegin, onTouchMove, onTouchEnd)
+- UI
+  - Buttons
 
 ## Under construction
-- UI buttons.
 - Keyboard events.
 
 ## Plans
