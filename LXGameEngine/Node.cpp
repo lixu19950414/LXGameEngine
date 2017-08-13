@@ -74,6 +74,18 @@ void Node::addChild(Node * child)
 	child->_parent = this;
 }
 
+void Node::removeChild(Node * child)
+{
+	for (auto it = _children.begin(); it != _children.end(); ++it) {
+		if (*it == child) {
+			_children.erase(it);
+			child->_parent = nullptr;
+			child->release();
+			break;
+		}
+	}
+}
+
 void Node::setPosition(GLfloat x, GLfloat y)
 {
 	_position = glm::vec3(x, y, 0.0f);
