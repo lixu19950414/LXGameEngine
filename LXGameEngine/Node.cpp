@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Node.h"
+#include "Scene.h"
 
 
 Node::Node() :
@@ -174,6 +175,8 @@ bool Node::touch(int x, int y)
 bool Node::onTouch(int x, int y)
 {
 	if (_aabb.containPoint(x, y)) {
+		auto scene = Scene::getInstance();
+		scene->pushTouchEventNode(this);
 		onTouchBegin(x, y);
 		if (_swallowTouches)
 			return true;
@@ -200,6 +203,12 @@ glm::vec2 Node::convertToNodeSpace(int x, int y)
 {
 	glm::mat4 im = glm::inverse(_modelTransform);
 	glm::vec4 position = im * (glm::vec4((float)x, (float)y, 0.0f, 1.0f));
+	return glm::vec2(position);
+}
+
+glm::vec2 Node::convertToWorldSpace(int x, int y)
+{
+	glm::vec4 position = _modelTransform * (glm::vec4((float)x, (float)y, 0.0f, 1.0f));
 	return glm::vec2(position);
 }
 

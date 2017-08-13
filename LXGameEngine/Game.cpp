@@ -24,15 +24,15 @@ bool Game::start()
 	Button* sprite = new (std::nothrow) Button();
 	sprite->initWithFile("Res/wall.jpg");
 	sprite->setCallback([sprite](int x, int y) {
-		/*LX_LOG("Button::%d, %d\n", x, y);
+		LX_LOG("Button::%d, %d\n", x, y);
 		glm::vec2& np = sprite->convertToNodeSpace(x, y);
 		LX_LOG("NodeSpace::%f, %f\n", np.x, np.y);
 		Sprite* s = new Sprite();
 		s->initWithFile("Res/test.png");
 		s->setContentSize(20, 20);
 		s->setPosition(np.x, np.y);
-		sprite->addChild(s);*/
-		sprite->getParent()->removeChild(sprite);
+		sprite->addChild(s);
+		//sprite->getParent()->removeChild(sprite);
 	});
 	//sprite->dump();
 	sprite->setContentSize(512, 512);

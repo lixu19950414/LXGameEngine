@@ -21,6 +21,25 @@ void Scene::visit()
 	Node::visit(_transform);
 }
 
+std::vector<Node*> Scene::getTouchEventNodes()
+{
+	return _touchEventNodes;
+}
+
+
+void Scene::pushTouchEventNode(Node * node)
+{
+	node->retain();
+	_touchEventNodes.push_back(node);
+}
+
+void Scene::clearTouchEventNodes()
+{
+	for (auto it : _touchEventNodes) {
+		it->release();
+	}
+	_touchEventNodes.clear();
+}
 
 Scene::~Scene()
 {

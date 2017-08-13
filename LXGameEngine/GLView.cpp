@@ -5,6 +5,7 @@
 #include "Scene.h"
 
 GLView *g_GLView = nullptr;
+GLenum g_MouseState[GLFW_MOUSE_BUTTON_LAST];
 
 GLView * GLView::getInstance()
 {
@@ -29,6 +30,9 @@ _window(nullptr)
 	GLuint winHeight = atoi(config.getConf("winheight").c_str());
 	
 	_window = glfwCreateWindow(winWidth, winHeight, config.getConf("wintitle").c_str(), NULL, NULL);
+
+	//Init states
+	memset(g_MouseState, 0, GLFW_MOUSE_BUTTON_LAST * sizeof(GLenum));
 	
 	//Setup callbakcs
 	glfwSetMouseButtonCallback(_window, GLView::mouse_button_callback);
@@ -40,23 +44,40 @@ void GLView::cursor_position_callback(GLFWwindow* window, double xpos, double yp
 {
 	int x = (int)xpos;
 	int y = Director::getInstance()->getWinHeight() - (int)ypos;
-	// LX_LOG("Mouse move: %d, %d\n", x, y);
+	if (g_MouseState[GLFW_MOUSE_BUTTON_LEFT] == GLFW_PRESS) {
+		auto scene = Scene::getInstance();
+		for (auto it : scene->getTouchEventNodes()) {
+			it->onTouchMove(x, y);
+		}
+	}
 }
 
 void GLView::mouse_button_callback(GLFWwindow * window, int button, int action, int mods)
 {
-	// GLFW_PRESS or GLFW_RELEASE 
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	g_MouseState[button] = action;
+
+	double xpos, ypos;
+	glfwGetCursorPos(window, &xpos, &ypos);
+	int x = (int)xpos;
+	int y = Director::getInstance()->getWinHeight() - (int)ypos;
+
+	if (button == GLFW_MOUSE_BUTTON_LEFT)
 	{
-		double xpos, ypos;
-		glfwGetCursorPos(window, &xpos, &ypos);
-		int x = (int)xpos;
-		int y = Director::getInstance()->getWinHeight() - (int)ypos;
-		// glm::vec4 pos = glm::inverse(Camera::getInstance()->getViewMatrix()) * glm::vec4(x, y, 0.0f, 1.0f);
-		LX_LOG("Press mouse left: %d, %d\n", x, y);
-		auto scene = Scene::getInstance();
-		scene->touch(x, y);
-		// LX_LOG("Press mouse leftwithview: %d, %d\n", pos.x, pos.y);
+		if (action == GLFW_PRESS) {
+			//glm::vec4 pos = glm::inverse(Camera::getInstance()->getViewMatrix()) * glm::vec4(x, y, 0.0f, 1.0f);
+			//LX_LOG("Press mouse left: %d, %d\n", x, y);
+			auto scene = Scene::getInstance();
+			scene->clearTouchEventNodes();
+			scene->touch(x, y);
+			// LX_LOG("Press mouse leftwithview: %d, %d\n", pos.x, pos.y);
+		}
+		else if(action == GLFW_RELEASE) {
+			auto scene = Scene::getInstance();
+			for (auto it : scene->getTouchEventNodes()) {
+				it->onTouchEnd(x, y);
+			}
+			scene->clearTouchEventNodes();
+		}
 	}
 }
 

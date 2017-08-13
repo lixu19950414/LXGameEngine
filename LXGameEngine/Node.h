@@ -40,6 +40,7 @@ public:
 	virtual void onTouchEnd(int x, int y);
 
 	virtual glm::vec2 convertToNodeSpace(int x, int y);
+	virtual glm::vec2 convertToWorldSpace(int x, int y);
 
 protected:
 	void updateTransform();

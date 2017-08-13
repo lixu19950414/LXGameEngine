@@ -7,9 +7,17 @@ class Scene :
 {
 public:
 	Scene();
+	~Scene();
+
 	static Scene* getInstance();
 	void visit();
-	~Scene();
+
+	std::vector<Node*> getTouchEventNodes();
+	void pushTouchEventNode(Node* node);
+	void clearTouchEventNodes();
+
+private:
+	std::vector<Node*> _touchEventNodes;
 };
 
 #endif
