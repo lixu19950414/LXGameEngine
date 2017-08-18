@@ -16,8 +16,9 @@
 - Finished main scene.
 - Finished rect.
 - Finished mouse events with scene graph priority.(onTouchBegin, onTouchMove, onTouchEnd)
+- Finished setFPS.
 - UI
-    - Buttons
+    - Buttons
 
 ## Under construction
 - Keyboard events.
