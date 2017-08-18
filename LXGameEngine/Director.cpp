@@ -15,7 +15,9 @@ Director* Director::getInstance()
 	return g_pDirector;
 }
 
-Director::Director()
+Director::Director() :
+	_FPS(60),
+	_SPF(1.0f/60)
 {
 
 }

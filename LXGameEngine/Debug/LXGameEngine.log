@@ -1,3 +1,9 @@
-﻿  Game.cpp
+﻿  LXGameEngine.cpp
+c:\projects\lxgameengine\lxgameengine\lxgameengine\lxgameengine.cpp(22): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(242): note: 参见“freopen”的声明
+c:\projects\lxgameengine\lxgameengine\lxgameengine\lxgameengine.cpp(23): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(242): note: 参见“freopen”的声明
+  Game.cpp
+  正在生成代码...
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.exe
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.pdb (Partial PDB)

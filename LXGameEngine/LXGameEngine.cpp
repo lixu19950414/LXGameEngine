@@ -60,6 +60,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		exit(EXIT_FAILURE);
 	}
 
+	auto lastUpdateTime = std::chrono::steady_clock::now();
+
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
@@ -67,7 +69,19 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			break;
 		}
 		glfwSwapBuffers(window);
-		Sleep(1);
+
+		// calculate time
+		float spf = Director::getInstance()->getSPF();
+
+		auto thisUpdateTime = std::chrono::steady_clock::now();
+		double timeExpend = std::chrono::duration_cast<std::chrono::duration<float>>(thisUpdateTime - lastUpdateTime).count();
+		while (timeExpend < spf - 0.001) {
+			Sleep(1);
+			thisUpdateTime = std::chrono::steady_clock::now();
+			timeExpend = std::chrono::duration_cast<std::chrono::duration<float>>(thisUpdateTime - lastUpdateTime).count();
+		}
+		// LX_LOG("frame time: %f\n", timeExpend);
+		lastUpdateTime = thisUpdateTime;
 	}
 
 	GLView::getInstance()->release();

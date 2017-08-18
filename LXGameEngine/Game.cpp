@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Sprite.h"
 #include "Button.h"
+#include "Director.h"
 
 Game * g_Game = nullptr;
 
@@ -32,6 +33,13 @@ bool Game::start()
 		s->setContentSize(20, 20);
 		s->setPosition(np.x, np.y);
 		sprite->addChild(s);
+		auto fps = Director::getInstance()->getFPS();
+		if (fps == 30) {
+			Director::getInstance()->setFPS(60);
+		}
+		else {
+			Director::getInstance()->setFPS(30);
+		}
 		//sprite->getParent()->removeChild(sprite);
 	});
 	//sprite->dump();
@@ -59,7 +67,7 @@ bool Game::start()
 	sprite3->setColor(0, 255, 0);
 	sprite3->setOpacity(100);
 	sprite3->autoRelease();
-	sprite3->setLocalZ(0);
+	sprite3->setLocalZ(1);
 	sprite->addChild(sprite3);
 
 
