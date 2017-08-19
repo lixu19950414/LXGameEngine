@@ -36,6 +36,7 @@
 #include <sstream>
 #include <chrono>
 #include <ratio>
+#include <algorithm>
 
 #include <vector>
 #include <list>

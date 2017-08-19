@@ -17,9 +17,10 @@ Director* Director::getInstance()
 
 Director::Director() :
 	_FPS(60),
-	_SPF(1.0f/60)
+	_SPF(1.0f/60),
+	_deltaTime(0.0f)
 {
-
+	_lastUpdateTime = std::chrono::steady_clock::now();
 }
 
 
@@ -29,20 +30,38 @@ Director::~Director()
 
 bool Director::mainLoop()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	// Update timer
+	calculateDeltaTime();
+
+	// Draw scene
+	onBeginResetGLState();
 	Scene::getInstance()->visit();
 	AutoReleasePool::getInstance()->executeClear();
+	
+	// Game loop
 	return Game::getInstance()->loop();
 }
 
 bool Director::start()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	Game::getInstance()->start();
 	
 	return true;
+}
+
+void Director::onBeginResetGLState()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+
+float Director::calculateDeltaTime()
+{
+	auto thisUpdateTime = std::chrono::steady_clock::now();
+	float tempTime = std::chrono::duration_cast<std::chrono::duration<float>>(thisUpdateTime - _lastUpdateTime).count();
+	_lastUpdateTime = thisUpdateTime;
+	_deltaTime = std::max(0.0f, tempTime);
+	return _deltaTime;
 }
 
