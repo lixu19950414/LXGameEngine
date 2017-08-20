@@ -34,6 +34,12 @@
     <Filter Include="源文件\game">
       <UniqueIdentifier>{2fd27988-750b-4492-8356-3fd20154b4d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\timer">
+      <UniqueIdentifier>{1f8b906d-e702-4bd8-ad65-b0886be1686d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\timer">
+      <UniqueIdentifier>{b4323a6b-746a-4c7f-b0e0-f8f26c7b071a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -92,6 +98,12 @@
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>源文件\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Scheduler.cpp">
+      <Filter>源文件\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>源文件\timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +182,12 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>头文件\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Scheduler.h">
+      <Filter>头文件\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>头文件\timer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

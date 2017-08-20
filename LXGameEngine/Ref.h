@@ -9,6 +9,7 @@ public:
 	inline void retain() { ++_refCount; };
 	void release();
 	void autoRelease();
+	inline int getReferenceCount() { return _refCount; };
 
 private:
 	int _refCount;

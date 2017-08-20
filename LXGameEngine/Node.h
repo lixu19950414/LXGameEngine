@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Ref.h"
 #include "Rect.h"
+#include "Timer.h"
 
 
 class Node : public Ref
@@ -42,6 +43,9 @@ public:
 	virtual glm::vec2 convertToNodeSpace(int x, int y);
 	virtual glm::vec2 convertToWorldSpace(int x, int y);
 
+	void scheduleUpdate(float interval, int leftTimes, std::function<void(float)> func, int priority = 0);
+	void releaseCurrentTimer();
+
 protected:
 	void updateTransform();
 	virtual void updateAABB();
@@ -74,6 +78,8 @@ protected:
 	GLubyte _opacity;
 
 	bool _swallowTouches;
+
+	Timer* _timer;
 };
 
 #endif

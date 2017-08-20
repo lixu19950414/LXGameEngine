@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Node.h"
 #include "Scene.h"
+#include "Scheduler.h"
 
 
 Node::Node() :
@@ -18,7 +19,8 @@ Node::Node() :
 	_anchorPoint(0.0f, 0.0f),
 	_opacity(255),
 	_aabb(),
-	_swallowTouches(false)
+	_swallowTouches(false),
+	_timer(nullptr)
 {
 }
 
@@ -38,6 +40,7 @@ Node::~Node()
 	}
 	_children.clear();
 	_parent = nullptr;
+	releaseCurrentTimer();
 }
 
 void Node::visit(glm::mat4 & parentTransform)
@@ -210,6 +213,21 @@ glm::vec2 Node::convertToWorldSpace(int x, int y)
 {
 	glm::vec4 position = _modelTransform * (glm::vec4((float)x, (float)y, 0.0f, 1.0f));
 	return glm::vec2(position);
+}
+
+void Node::scheduleUpdate(float interval, int leftTimes, std::function<void(float)> func, int priority)
+{
+	releaseCurrentTimer();
+	_timer = new (std::nothrow) Timer(interval, leftTimes, func, priority);
+	Scheduler::getInstance()->addTimerToSchedule(_timer);
+}
+
+void Node::releaseCurrentTimer() {
+	if (_timer != nullptr) {
+		_timer->setDead();
+		_timer->release();
+		_timer = nullptr;
+	}
 }
 
 

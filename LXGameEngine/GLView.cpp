@@ -4,15 +4,15 @@
 #include "Camera.h"
 #include "Scene.h"
 
-GLView *g_GLView = nullptr;
+GLView *g_pGLView = nullptr;
 GLenum g_MouseState[GLFW_MOUSE_BUTTON_LAST];
 
 GLView * GLView::getInstance()
 {
-	if (g_GLView == nullptr) {
-		g_GLView = new (std::nothrow) GLView();
+	if (g_pGLView == nullptr) {
+		g_pGLView = new (std::nothrow) GLView();
 	}
-	return g_GLView;
+	return g_pGLView;
 }
 
 GLView::GLView():

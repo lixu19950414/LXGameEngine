@@ -3,14 +3,14 @@
 #include "lx_shaders_pvm_default.frag"
 #include "lx_shaders_pvm_default.vert"
 
-ShaderCache* g_ShaderCache = nullptr;
+ShaderCache* g_pShaderCache = nullptr;
 
 ShaderCache * ShaderCache::getInstance()
 {
-	if (!g_ShaderCache) {
-		g_ShaderCache = new ShaderCache();
+	if (!g_pShaderCache) {
+		g_pShaderCache = new ShaderCache();
 	}
-	return g_ShaderCache;
+	return g_pShaderCache;
 }
 
 ShaderCache::ShaderCache()

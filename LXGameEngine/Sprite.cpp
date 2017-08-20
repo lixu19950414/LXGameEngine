@@ -73,7 +73,7 @@ void Sprite::dump()
 {
 	LX_LOG("Sprite::Dump\n");
 	_texture->dump();
-	LX_LOG("AABB: origin(%d, %d) size(%d, %d)\n", _aabb.getOrigin().x, _aabb.getOrigin().y, _aabb.getSize().x, _aabb.getSize().y);
+	LX_LOG("AABB: origin(%f, %f) size(%f, %f)\n", _aabb.getOrigin().x, _aabb.getOrigin().y, _aabb.getSize().x, _aabb.getSize().y);
 }
 
 void Sprite::setContentSize(GLfloat width, GLfloat height)

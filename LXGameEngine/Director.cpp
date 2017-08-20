@@ -3,6 +3,8 @@
 #include "AutoReleasePool.h"
 #include "Scene.h"
 #include "Game.h"
+#include "Common.h"
+#include "Scheduler.h"
 
 Director* g_pDirector = nullptr;
 
@@ -32,6 +34,7 @@ bool Director::mainLoop()
 {
 	// Update timer
 	calculateDeltaTime();
+	Scheduler::getInstance()->update(_deltaTime);
 
 	// Draw scene
 	onBeginResetGLState();
