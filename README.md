@@ -18,6 +18,7 @@
 - Finished mouse events with scene graph priority.(onTouchBegin, onTouchMove, onTouchEnd)
 - Finished setFPS.
 - Finished UIButtons.
+- Finished Timer.
 
 ## Under construction
 - Keyboard events.
@@ -25,7 +26,6 @@
 ## Plans
 - BlendFunc.
 - glStateBlock.
-- Timer.
 - Actions.
 - Particles.
 - Support OpenAL.
