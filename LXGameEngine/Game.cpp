@@ -42,7 +42,7 @@ bool Game::start()
 		}
 		//sprite->getParent()->removeChild(sprite);
 	});
-	sprite->scheduleUpdate(1.0f, 5, [sprite](float dt) {sprite->dump(); LX_LOG("Number: %d\n", 1); sprite->scheduleUpdate(1.0f, 2, [sprite](float dt) {sprite->dump(); LX_LOG("Number: %d\n", 2); }); });
+	sprite->scheduleUpdate(1.0f, 5, [sprite](float dt) {sprite->dump(); LX_LOG("Number: %d\n", 1);  LX_LOG("ExperiencedTimer: %f\n", dt); sprite->scheduleUpdate(1.0f, 2, [sprite](float dt) {sprite->dump(); LX_LOG("Number: %d\n", 2); LX_LOG("ExperiencedTimer: %f\n", dt); }); });
 	//sprite->dump();
 	sprite->setContentSize(512, 512);
 	sprite->setPosition(512.0, 512.0f);

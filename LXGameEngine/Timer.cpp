@@ -28,11 +28,9 @@ void Timer::update(float dt)
 	}
 	_experiencedTime += dt;
 	if (_experiencedTime >= _interval) {
+		_timerFunc(_experiencedTime);
 		--_leftTimes;
 		_experiencedTime -= _interval;
-		if (_timerFunc != nullptr) {
-			_timerFunc(dt);
-		}
 		if (_leftTimes == 0) {
 			_active = false;
 		}
