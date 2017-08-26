@@ -19,11 +19,13 @@
 - Finished setFPS.
 - Finished UIButtons.
 - Finished Timer.
+- Finished TextureCache.
 
 ## Under construction
 - Keyboard events.
 
 ## Plans
+- SpriteFrame & SpriteFrameCache
 - BlendFunc.
 - glStateBlock.
 - Actions.
