@@ -1,6 +1,4 @@
 ﻿  SpriteFrame.cpp
-  正在生成代码...
-  正在跳过...(未检测到相关更改)
-  SpriteFrameCache.cpp
+c:\projects\lxgameengine\lxgameengine\lxgameengine\spriteframe.cpp(30): warning C4244: “初始化”: 从“GLfloat”转换到“GLint”，可能丢失数据
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.exe
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.pdb (Partial PDB)

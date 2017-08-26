@@ -18,6 +18,9 @@ public:
 	inline const glm::vec2& getRBTexCoord() { return _rbTexCoord; };
 	inline const glm::vec2& getRTTexCoord() { return _rtTexCoord; };
 
+	inline Texture2D* getTexture() { return _texture; };
+	inline Rect getPixelRect() { return _pixelRect; };
+
 private:
 	void calTexCoord();
 	Rect _pixelRect;

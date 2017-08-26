@@ -10,11 +10,11 @@ public:
 
 	inline void setOrigin(glm::vec2 origin) { _origin = origin; };
 	inline void setOrigin(GLfloat oriX, GLfloat oriY) { _origin = glm::vec2(oriX, oriY); };
-	inline glm::vec2 getOrigin() { return _origin; };
+	inline const glm::vec2& getOrigin() { return _origin; };
 
 	inline void setSize(glm::vec2 size) { _size = size; };
 	inline void setSize(GLfloat sizeX, GLfloat sizeY) { _size = glm::vec2(sizeX, sizeY); };
-	inline glm::vec2 getSize() { return _size; };
+	inline const glm::vec2& getSize() { return _size; };
 
 	bool containPoint(glm::vec2 point);
 	bool containPoint(GLfloat x, GLfloat y);

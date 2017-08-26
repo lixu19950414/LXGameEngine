@@ -20,13 +20,14 @@ bool SpriteFrame::initWithTextureRect(Texture2D * texture, const Rect & rect)
 	_texture = texture;
 	_pixelRect = rect;
 	_texture->retain();
+	calTexCoord();
 	return true;
 }
 
 void SpriteFrame::calTexCoord()
 {
-	GLint texWidth = _texture->getPixelWidth();
-	GLint texHeight = _texture->getPixelHeight();
+	GLfloat texWidth = GLfloat(_texture->getPixelWidth());
+	GLint texHeight = GLfloat( _texture->getPixelHeight());
 	glm::vec2 origin = _pixelRect.getOrigin();
 	glm::vec2 size = _pixelRect.getSize();
 
@@ -38,6 +39,8 @@ void SpriteFrame::calTexCoord()
 	_rbTexCoord.y = origin.y / texHeight;
 	_rtTexCoord.x = (origin.x + size.x) / texWidth;
 	_rtTexCoord.y = (origin.y + size.y) / texHeight;
+
+	// LX_LOG("%f %f %f %f %f %f %f %f", _lbTexCoord.x, _lbTexCoord.y, _ltTexCoord.x, _ltTexCoord.y, _rbTexCoord.x, _rbTexCoord.y, _rtTexCoord.x, _rtTexCoord.y)
 }
 
 SpriteFrame::~SpriteFrame()

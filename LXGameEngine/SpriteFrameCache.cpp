@@ -76,6 +76,6 @@ SpriteFrame * SpriteFrameCache::addSpriteFrameWithFileName(const std::string & k
 {
 	TextureCache* ins = TextureCache::getInstance();
 	Texture2D* tex = ins->addTextureWithFileName(key, type);
-	SpriteFrame* spriteFrame = this->addSpriteFrameWithKey(key, tex, Rect(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f)));
+	SpriteFrame* spriteFrame = this->addSpriteFrameWithKey(key, tex, Rect(glm::vec2(0.0f, 0.0f), glm::vec2(tex->getPixelWidth(), tex->getPixelHeight())));
 	return spriteFrame;
 }

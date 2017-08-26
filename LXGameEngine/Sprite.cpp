@@ -5,7 +5,7 @@
 #include "TextureCache.h"
 
 Sprite::Sprite() :
-_texture(nullptr),
+_spriteFrame(nullptr),
 _shader(nullptr),
 _vertsDirty(true)
 {
@@ -17,34 +17,48 @@ _vertsDirty(true)
 
 Sprite::~Sprite()
 {
-	releaseCurrentTexture();
+	releaseCurrentSpriteFrame();
 	_shader->release();
 }
 
 bool Sprite::initWithFile(const std::string & filename)
 {
-	Texture2D* texture = TextureCache::getInstance()->addTextureWithFileName(filename);
-	if (texture == nullptr) {
+	SpriteFrame* spriteFrame = SpriteFrameCache::getInstance()->addSpriteFrameWithFileName(filename);
+	if (spriteFrame == nullptr) {
 		return false;
 	}
 	else {
-		return initWithTexture(texture);
+		return initWithSpriteFrame(spriteFrame);
 	}
 }
 
-bool Sprite::initWithTexture(Texture2D * texture)
+bool Sprite::initWithSpriteFrame(SpriteFrame * spriteFrame)
 {
-	releaseCurrentTexture();
-	_texture = texture;
-	_texture->retain();
+	releaseCurrentSpriteFrame();
+	_spriteFrame = spriteFrame;
+	_spriteFrame->retain();
 
-	GLint pixelWidth = texture->getPixelWidth();
-	GLint pixelHeight = texture->getPixelHeight();
+	GLint pixelWidth = _spriteFrame->getPixelRect().getOrigin().x;
+	GLint pixelHeight = _spriteFrame->getPixelRect().getOrigin().y;
 
 	setContentSize(GLfloat(pixelWidth), GLfloat(pixelHeight));
-	
+
 	return true;
 }
+
+//bool Sprite::initWithTexture(Texture2D * texture)
+//{
+//	releaseCurrentTexture();
+//	_texture = texture;
+//	_texture->retain();
+//
+//	GLint pixelWidth = texture->getPixelWidth();
+//	GLint pixelHeight = texture->getPixelHeight();
+//
+//	setContentSize(GLfloat(pixelWidth), GLfloat(pixelHeight));
+//	
+//	return true;
+//}
 
 void Sprite::draw()
 {
@@ -64,7 +78,7 @@ void Sprite::draw()
 	}*/
 
 	glActiveTexture(GL_TEXTURE0); //在绑定纹理之前先激活纹理单元
-	_texture->bind();
+	_spriteFrame->getTexture()->bind();
 	glBindVertexArray(_vao);
 	glDrawElements(GL_TRIANGLES, _polyInfo.getIndicesCount(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
@@ -73,7 +87,7 @@ void Sprite::draw()
 void Sprite::dump()
 {
 	LX_LOG("Sprite::Dump\n");
-	_texture->dump();
+	//->dump();
 	LX_LOG("AABB: origin(%f, %f) size(%f, %f)\n", _aabb.getOrigin().x, _aabb.getOrigin().y, _aabb.getSize().x, _aabb.getSize().y);
 }
 
@@ -116,10 +130,10 @@ void Sprite::setColor(GLubyte r, GLubyte g, GLubyte b)
 	}
 }
 
-void Sprite::releaseCurrentTexture()
+void Sprite::releaseCurrentSpriteFrame()
 {
-	if (_texture != nullptr) {
-		_texture->release();
+	if (_spriteFrame != nullptr) {
+		_spriteFrame->release();
 	}
 }
 
@@ -145,10 +159,14 @@ void Sprite::fillPolygonInfo()
 	_rb.setColor(_color[0], _color[1], _color[2], _opacity);
 	_rt.setColor(_color[0], _color[1], _color[2], _opacity);
 
-	_lb.setUV(.0f, .0f);
-	_lt.setUV(.0f, 1.0f);
-	_rb.setUV(1.0f, 0.0f);
-	_rt.setUV(1.0f, 1.0f);
+	const glm::vec2 lb = _spriteFrame->getLBTexCoord();
+	const glm::vec2 lt = _spriteFrame->getLTTexCoord();
+	const glm::vec2 rb = _spriteFrame->getRBTexCoord();
+	const glm::vec2 rt = _spriteFrame->getRTTexCoord();
+	_lb.setUV(lb.x, lb.y);
+	_lt.setUV(lt.x, lt.y);
+	_rb.setUV(rb.x, rb.y);
+	_rt.setUV(rt.x, rt.y);
 
 	_polyInfo.pushVert(_lt);
 	_polyInfo.pushVert(_lb);

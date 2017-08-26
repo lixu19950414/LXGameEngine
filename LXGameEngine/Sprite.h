@@ -3,8 +3,9 @@
 
 #include "Node.h"
 #include "PolygonInfo.h"
-#include "Texture2D.h"
 #include "Shader.h"
+#include "SpriteFrame.h"
+#include "SpriteFrameCache.h"
 
 class Sprite : public Node
 {
@@ -12,7 +13,7 @@ public:
 	Sprite();
 	virtual ~Sprite();
 	bool initWithFile(const std::string& filename);
-	bool initWithTexture(Texture2D* texture);
+	bool initWithSpriteFrame(SpriteFrame* spriteFrame);
 	virtual void draw() override;
 	void dump();
 	void setContentSize(GLfloat width, GLfloat height) override;
@@ -24,11 +25,11 @@ protected:
 	// verts
 	bool _vertsDirty;
 	PolygonInfo _polyInfo;
-	Texture2D* _texture;
+	SpriteFrame* _spriteFrame;
 	Shader* _shader;
 	GLubyte _color[3];
 private:
-	void releaseCurrentTexture();
+	void releaseCurrentSpriteFrame();
 	void fillPolygonInfo();
 	void setupVAOAndVBO();
 private:
