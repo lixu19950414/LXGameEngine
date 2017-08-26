@@ -1,7 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include "stdafx.h"
+#include <vector>
 #include "Ref.h"
 #include "Rect.h"
 #include "Timer.h"

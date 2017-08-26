@@ -1,8 +1,9 @@
 #ifndef SHADER_CACHE_H
 #define SHADER_CACHE_H
 
+#include <vector>
 #include "Shader.h"
-#include "stdafx.h"
+
 
 class ShaderCache
 {

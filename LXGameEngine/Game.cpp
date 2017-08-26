@@ -4,6 +4,7 @@
 #include "Sprite.h"
 #include "Button.h"
 #include "Director.h"
+#include "TextureCache.h"
 
 Game * g_Game = nullptr;
 
@@ -42,12 +43,16 @@ bool Game::start()
 		}
 		//sprite->getParent()->removeChild(sprite);
 	});
-	sprite->scheduleUpdate(1.0f, 5, [sprite](float dt) {sprite->dump(); LX_LOG("Number: %d\n", 1);  LX_LOG("ExperiencedTimer: %f\n", dt); sprite->scheduleUpdate(1.0f, 2, [sprite](float dt) {sprite->dump(); LX_LOG("Number: %d\n", 2); LX_LOG("ExperiencedTimer: %f\n", dt); }); });
+	sprite->scheduleUpdate(1.0f, 5, [](float dt) {
+		int cnt = TextureCache::getInstance()->removeUnusedTextures();
+		LX_LOG("RemoveUnusedTextures: %d\n", cnt); 
+	});
 	//sprite->dump();
 	sprite->setContentSize(512, 512);
 	sprite->setPosition(512.0, 512.0f);
 	sprite->setAnchorPoint(0.5f, 0.5f);
 	sprite->setSwallowTouches(true);
+	sprite->autoRelease();
 	//sprite->setRotation(-45.0f);
 	//sprite->setScale(1.0f, 2.0f);
 	//sprite->visit(glm::mat4());
@@ -60,6 +65,7 @@ bool Game::start()
 	sprite2->autoRelease();
 	sprite2->setLocalZ(-1);
 	sprite->addChild(sprite2);
+	sprite->removeChild(sprite2);
 
 	Sprite* sprite3 = new (std::nothrow) Sprite();
 	sprite3->initWithFile("Res/test.png");
@@ -70,7 +76,10 @@ bool Game::start()
 	sprite3->autoRelease();
 	sprite3->setLocalZ(1);
 	sprite->addChild(sprite3);
+	sprite->removeChild(sprite3);
 
+	int cnt = TextureCache::getInstance()->removeUnusedTextures();
+	LX_LOG("RemoveUnusedTextures: %d\n", cnt);
 
 	//sprite->autoRelease();
 	/*Texture2D* texture = new Texture2D();

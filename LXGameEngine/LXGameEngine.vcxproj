@@ -164,6 +164,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="TextureCache.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +197,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="TextureCache.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>

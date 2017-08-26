@@ -2,6 +2,7 @@
 #include "Sprite.h"
 #include "ShaderCache.h"
 #include "Camera.h"
+#include "TextureCache.h"
 
 Sprite::Sprite() :
 _texture(nullptr),
@@ -22,13 +23,13 @@ Sprite::~Sprite()
 
 bool Sprite::initWithFile(const std::string & filename)
 {
-	Texture2D* texture = new (std::nothrow) Texture2D();
-	if (!texture->initWithFileName(filename)) {
-		delete texture;
+	Texture2D* texture = TextureCache::getInstance()->addTextureWithFileName(filename);
+	if (texture == nullptr) {
 		return false;
 	}
-	texture->autoRelease();
-	return initWithTexture(texture);
+	else {
+		return initWithTexture(texture);
+	}
 }
 
 bool Sprite::initWithTexture(Texture2D * texture)
@@ -40,7 +41,7 @@ bool Sprite::initWithTexture(Texture2D * texture)
 	GLint pixelWidth = texture->getPixelWidth();
 	GLint pixelHeight = texture->getPixelHeight();
 
-	setContentSize(pixelWidth, pixelHeight);
+	setContentSize(GLfloat(pixelWidth), GLfloat(pixelHeight));
 	
 	return true;
 }
