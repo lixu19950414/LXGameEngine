@@ -20,6 +20,7 @@
 - Finished UIButtons.
 - Finished Timer.
 - Finished TextureCache.
+- Finished SpriteFrame & SpriteFrameCache.
 
 ## Under construction
 - Keyboard events.
