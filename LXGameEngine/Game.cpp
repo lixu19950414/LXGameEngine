@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "Director.h"
 #include "TextureCache.h"
+#include "SpriteFrameCache.h"
 
 Game * g_Game = nullptr;
 
@@ -44,8 +45,10 @@ bool Game::start()
 		//sprite->getParent()->removeChild(sprite);
 	});
 	sprite->scheduleUpdate(1.0f, 5, [](float dt) {
-		int cnt = TextureCache::getInstance()->removeUnusedTextures();
-		LX_LOG("RemoveUnusedTextures: %d\n", cnt); 
+		int cnt1 = SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
+		int cnt2 = TextureCache::getInstance()->removeUnusedTextures();
+		LX_LOG("RemoveUnusedSpriteFrames: %d\n", cnt1);
+		LX_LOG("RemoveUnusedTextures: %d\n", cnt2);
 	});
 	//sprite->dump();
 	sprite->setContentSize(512, 512);
@@ -78,8 +81,19 @@ bool Game::start()
 	sprite->addChild(sprite3);
 	sprite->removeChild(sprite3);
 
-	int cnt = TextureCache::getInstance()->removeUnusedTextures();
-	LX_LOG("RemoveUnusedTextures: %d\n", cnt);
+	SpriteFrame* spriteFrame = SpriteFrameCache::getInstance()->addSpriteFrameWithKey("test_sprite_frame", SpriteFrameCache::getInstance()->getSpriteFrameForKey("Res/test.png")->getTexture(), Rect(glm::vec2(200, 200), glm::vec2(100, 100)));
+	Sprite* sprite4 = new (std::nothrow) Sprite();
+	sprite4->initWithSpriteFrame(spriteFrame);
+	sprite4->setPosition(200, 200);
+	sprite4->setContentSize(512, 512);
+	sprite4->autoRelease();
+	sprite4->setLocalZ(1);
+	sprite->addChild(sprite4);
+
+	int cnt1 = SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
+	int cnt2 = TextureCache::getInstance()->removeUnusedTextures();
+	LX_LOG("RemoveUnusedSpriteFrames: %d\n", cnt1);
+	LX_LOG("RemoveUnusedTextures: %d\n", cnt2);
 
 	//sprite->autoRelease();
 	/*Texture2D* texture = new Texture2D();

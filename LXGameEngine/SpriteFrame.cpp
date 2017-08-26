@@ -26,8 +26,8 @@ bool SpriteFrame::initWithTextureRect(Texture2D * texture, const Rect & rect)
 
 void SpriteFrame::calTexCoord()
 {
-	GLfloat texWidth = GLfloat(_texture->getPixelWidth());
-	GLint texHeight = GLfloat( _texture->getPixelHeight());
+	GLint texWidth = _texture->getPixelWidth();
+	GLint texHeight =  _texture->getPixelHeight();
 	glm::vec2 origin = _pixelRect.getOrigin();
 	glm::vec2 size = _pixelRect.getSize();
 

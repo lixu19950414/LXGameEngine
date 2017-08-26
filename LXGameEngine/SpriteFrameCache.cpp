@@ -32,12 +32,13 @@ int SpriteFrameCache::removeUnusedSpriteFrames()
 		if (it->second->getReferenceCount() == 1) {
 			it->second->release();
 			it = _cachedSpriteFrames.erase(it);
+			++cnt;
 		}
 		else {
 			++it;
 		}
 	}
-	return 0;
+	return cnt;
 }
 
 SpriteFrame * SpriteFrameCache::getSpriteFrameForKey(const std::string& key)

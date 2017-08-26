@@ -16,7 +16,7 @@ public:
 	inline void setSize(GLfloat sizeX, GLfloat sizeY) { _size = glm::vec2(sizeX, sizeY); };
 	inline const glm::vec2& getSize() { return _size; };
 
-	bool containPoint(glm::vec2 point);
+	bool containPoint(const glm::vec2& point);
 	bool containPoint(GLfloat x, GLfloat y);
 
 	~Rect();
