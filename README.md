@@ -26,7 +26,6 @@
 - Keyboard events.
 
 ## Plans
-- SpriteFrame & SpriteFrameCache
 - BlendFunc.
 - glStateBlock.
 - Actions.
