@@ -46,6 +46,12 @@
     <Filter Include="头文件\render">
       <UniqueIdentifier>{4ce4e978-0d92-433a-afaa-9892e9b3da06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\2d">
+      <UniqueIdentifier>{dbdd3515-9a6c-4aae-938b-d322ba46fd54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\2d">
+      <UniqueIdentifier>{7808304f-c7a8-41dc-bc9a-7b426524bcfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -54,31 +60,7 @@
     <ClCompile Include="LXGameEngine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Director.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Ref.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="PolygonInfo.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="GLView.cpp">
@@ -114,6 +96,36 @@
     <ClCompile Include="TextureCache.cpp">
       <Filter>源文件\render</Filter>
     </ClCompile>
+    <ClCompile Include="Ref.cpp">
+      <Filter>源文件\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>源文件\render</Filter>
+    </ClCompile>
+    <ClCompile Include="Director.cpp">
+      <Filter>源文件\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>源文件\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>源文件\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>源文件\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>源文件\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteFrame.cpp">
+      <Filter>源文件\render</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteFrameCache.cpp">
+      <Filter>源文件\render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LXGameEngine.rc">
@@ -132,15 +144,6 @@
     <ClInclude Include="LXGameEngine.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Director.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>头文件\base</Filter>
     </ClInclude>
@@ -154,15 +157,6 @@
       <Filter>头文件\base</Filter>
     </ClInclude>
     <ClInclude Include="PolygonInfo.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="GLView.h">
@@ -200,6 +194,30 @@
     </ClInclude>
     <ClInclude Include="Ref.h">
       <Filter>头文件\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>头文件\render</Filter>
+    </ClInclude>
+    <ClInclude Include="Director.h">
+      <Filter>头文件\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>头文件\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>头文件\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>头文件\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>头文件\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteFrame.h">
+      <Filter>头文件\render</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteFrameCache.h">
+      <Filter>头文件\render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
