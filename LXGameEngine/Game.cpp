@@ -85,7 +85,6 @@ bool Game::start()
 	Sprite* sprite4 = new (std::nothrow) Sprite();
 	sprite4->initWithSpriteFrame(spriteFrame);
 	sprite4->setPosition(200, 200);
-	sprite4->setContentSize(512, 512);
 	sprite4->autoRelease();
 	sprite4->setLocalZ(1);
 	sprite->addChild(sprite4);
