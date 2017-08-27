@@ -79,6 +79,7 @@ const GridPoint & TextureGrid::autoFitAndGetGridPoint(int pixelWidth, int pixelH
 		glBindTexture(GL_TEXTURE_2D, _name);
 		//LX_LOG("glTexSubImage2D %d %d, %d, %d, %d %d\n", _name, gp._x * _partPixelWidth, gp._y * _partPixelHeight, pixelWidth, pixelHeight, strlen((const char*)data));
 		glTexSubImage2D(GL_TEXTURE_2D, 0, gp._x * _partPixelWidth, _pixelHeight - gp._y * _partPixelHeight - pixelHeight, pixelWidth, pixelHeight, _glTextureInternalFormat, dataType, data);
+		//glTexSubImage2D(GL_TEXTURE_2D, 0, gp._x * _partPixelWidth, gp._y * _partPixelHeight, pixelWidth, pixelHeight, _glTextureInternalFormat, dataType, data);
 		//glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pixelWidth, pixelHeight, _glTextureInternalFormat, dataType, data);
 		
 		// std::cout << data << std::endl;
