@@ -20,12 +20,12 @@
 - Finished UIButtons.
 - Finished Timer.
 - Finished TextureCache.
+- Finished SpriteFrame & SpriteFrameCache.
 
 ## Under construction
 - Keyboard events.
 
 ## Plans
-- SpriteFrame & SpriteFrameCache
 - BlendFunc.
 - glStateBlock.
 - Actions.
