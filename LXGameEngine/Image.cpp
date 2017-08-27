@@ -6,7 +6,7 @@
 unsigned char WHITE_2X2_IMAGE_DATA[4] = {0xff, 0xff, 0xff, 0xff};
 std::string WHITE_2X2_IMAGE_NAME = "white_2x2_image";
 
-Image::Image(std::string imageName, ImageDataType type) :
+Image::Image(const std::string& imageName, ImageDataType type) :
 _loadSuccess(false),
 _imageData(nullptr),
 _width(0),

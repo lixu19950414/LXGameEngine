@@ -15,7 +15,7 @@ public:
 
 	}ImageDataType;
 
-	Image(std::string imageName, ImageDataType type=IMAGE_RGBA);
+	Image(const std::string& imageName, ImageDataType type=IMAGE_RGBA);
 	~Image();
 
 	inline unsigned char *getData() { return _imageData; };

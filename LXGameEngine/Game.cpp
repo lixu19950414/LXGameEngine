@@ -6,6 +6,8 @@
 #include "Director.h"
 #include "TextureCache.h"
 #include "SpriteFrameCache.h"
+#include "TextureGrid.h"
+#include "TextureGridCache.h"
 
 Game * g_Game = nullptr;
 
@@ -24,12 +26,19 @@ bool Game::start()
 {
 	auto scene = Scene::getInstance();
 
+	// Create textureGrids
+	auto insTGC = TextureGridCache::getInstance();
+	insTGC->addTextureGridWithKey("test_texture_grid", 2048, 2048, 512, 512);
+	insTGC->enableTextureGridWithKey("test_texture_grid");
+
 	Button* sprite = new (std::nothrow) Button();
-	sprite->initWithFile("Res/wall.jpg");
+	sprite->initWithFile("Res/jvren.png");
+	// sprite->initWithFile("Res/test.png");
+	// insTGC->disableTextureGridCache();
 	sprite->setCallback([sprite](int x, int y) {
-		LX_LOG("Button::%d, %d\n", x, y);
+		//LX_LOG("Button::%d, %d\n", x, y);
 		glm::vec2& np = sprite->convertToNodeSpace(x, y);
-		LX_LOG("NodeSpace::%f, %f\n", np.x, np.y);
+		//LX_LOG("NodeSpace::%f, %f\n", np.x, np.y);
 		Sprite* s = new Sprite();
 		s->initWithFile("Res/test.png");
 		s->setContentSize(20, 20);
@@ -80,14 +89,6 @@ bool Game::start()
 	sprite3->setLocalZ(1);
 	sprite->addChild(sprite3);
 	sprite->removeChild(sprite3);
-
-	SpriteFrame* spriteFrame = SpriteFrameCache::getInstance()->addSpriteFrameWithKey("test_sprite_frame", SpriteFrameCache::getInstance()->getSpriteFrameForKey("Res/test.png")->getTexture(), Rect(glm::vec2(200, 200), glm::vec2(100, 100)));
-	Sprite* sprite4 = new (std::nothrow) Sprite();
-	sprite4->initWithSpriteFrame(spriteFrame);
-	sprite4->setPosition(200, 200);
-	sprite4->autoRelease();
-	sprite4->setLocalZ(1);
-	sprite->addChild(sprite4);
 
 	int cnt1 = SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
 	int cnt2 = TextureCache::getInstance()->removeUnusedTextures();

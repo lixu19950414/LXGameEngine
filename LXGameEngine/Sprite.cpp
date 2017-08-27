@@ -34,12 +34,11 @@ bool Sprite::initWithFile(const std::string & filename)
 
 bool Sprite::initWithSpriteFrame(SpriteFrame * spriteFrame)
 {
-	releaseCurrentSpriteFrame();
 	_spriteFrame = spriteFrame;
 	_spriteFrame->retain();
 
-	GLint pixelWidth = _spriteFrame->getPixelRect().getOrigin().x;
-	GLint pixelHeight = _spriteFrame->getPixelRect().getOrigin().y;
+	GLint pixelWidth = (GLint)_spriteFrame->getPixelRect().getOrigin().x;
+	GLint pixelHeight = (GLint)_spriteFrame->getPixelRect().getOrigin().y;
 
 	setContentSize(GLfloat(pixelWidth), GLfloat(pixelHeight));
 
@@ -78,7 +77,7 @@ void Sprite::draw()
 	}*/
 
 	glActiveTexture(GL_TEXTURE0); //在绑定纹理之前先激活纹理单元
-	_spriteFrame->getTexture()->bind();
+	_spriteFrame->bindTexture();
 	glBindVertexArray(_vao);
 	glDrawElements(GL_TRIANGLES, _polyInfo.getIndicesCount(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
@@ -167,6 +166,10 @@ void Sprite::fillPolygonInfo()
 	_lt.setUV(lt.x, lt.y);
 	_rb.setUV(rb.x, rb.y);
 	_rt.setUV(rt.x, rt.y);
+	/*_lb.setUV(0.0, 0.0);
+	_lt.setUV(0.0, 1.0);
+	_rb.setUV(1.0, 0.0);
+	_rt.setUV(1.0, 1.0); */
 
 	_polyInfo.pushVert(_lt);
 	_polyInfo.pushVert(_lb);

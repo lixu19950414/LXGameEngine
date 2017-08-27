@@ -51,7 +51,7 @@ bool Texture2D::initWithImage(Image * image)
 		_pixelWidth = image->getWidth();
 		_pixelHeight = image->getHeight();
 		_dataType = image->getDataType();
-		glGenerateMipmap(GL_TEXTURE_2D);
+		// glGenerateMipmap(GL_TEXTURE_2D);
 		// …Ë÷√Œ∆¿Ìª∑»∆
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);

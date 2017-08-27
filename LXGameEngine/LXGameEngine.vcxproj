@@ -167,6 +167,8 @@
     </ClCompile>
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="TextureCache.cpp" />
+    <ClCompile Include="TextureGrid.cpp" />
+    <ClCompile Include="TextureGridCache.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +204,8 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TextureCache.h" />
+    <ClInclude Include="TextureGrid.h" />
+    <ClInclude Include="TextureGridCache.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>

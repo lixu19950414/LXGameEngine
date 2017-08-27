@@ -56,6 +56,26 @@ Texture2D * TextureCache::addTextureWithFileName(const std::string & key, Image:
 	}
 }
 
+Texture2D * TextureCache::addTextureWithImage(const std::string & key, Image * image)
+{
+	Texture2D* find = getTextureForKey(key);
+	if (find == nullptr) {
+		find = new (std::nothrow) Texture2D();
+		bool ret = find->initWithImage(image);
+		if (ret) {
+			_cachedTextures.emplace(key, find);
+			return find;
+		}
+		else {
+			delete find;
+			return nullptr;
+		}
+	}
+	else {
+		return find;
+	}
+}
+
 int TextureCache::removeUnusedTextures()
 {
 	int cnt = 0;

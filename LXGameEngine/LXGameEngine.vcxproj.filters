@@ -126,6 +126,12 @@
     <ClCompile Include="SpriteFrameCache.cpp">
       <Filter>源文件\render</Filter>
     </ClCompile>
+    <ClCompile Include="TextureGrid.cpp">
+      <Filter>源文件\render</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureGridCache.cpp">
+      <Filter>源文件\render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LXGameEngine.rc">
@@ -217,6 +223,12 @@
       <Filter>头文件\render</Filter>
     </ClInclude>
     <ClInclude Include="SpriteFrameCache.h">
+      <Filter>头文件\render</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureGrid.h">
+      <Filter>头文件\render</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureGridCache.h">
       <Filter>头文件\render</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,6 +12,7 @@ public:
 	static TextureCache* getInstance();
 	Texture2D* getTextureForKey(const std::string& key);
 	Texture2D* addTextureWithFileName(const std::string& key, Image::ImageDataType type=Image::ImageDataType::IMAGE_RGBA);
+	Texture2D* addTextureWithImage(const std::string& key, Image* image);
 	int removeUnusedTextures();
 private:
 	std::unordered_map<std::string, Texture2D*> _cachedTextures;
