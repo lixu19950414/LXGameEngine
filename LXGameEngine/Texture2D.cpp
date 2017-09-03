@@ -37,10 +37,10 @@ bool Texture2D::initWithImage(Image * image)
 		switch (image->getDataType())
 		{
 		case Image::IMAGE_RGBA:
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->getWidth(), image->getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image->getData());
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image->getWidth(), image->getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image->getData());
 			break;
 		case Image::IMAGE_RGB:
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->getWidth(), image->getHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, image->getData());
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, image->getWidth(), image->getHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, image->getData());
 			break;
 		default:
 			releaseCurrentTexture();
