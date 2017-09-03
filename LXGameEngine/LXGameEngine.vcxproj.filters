@@ -132,6 +132,9 @@
     <ClCompile Include="TextureGridCache.cpp">
       <Filter>源文件\render</Filter>
     </ClCompile>
+    <ClCompile Include="FontCache.cpp">
+      <Filter>源文件\render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LXGameEngine.rc">
@@ -229,6 +232,9 @@
       <Filter>头文件\render</Filter>
     </ClInclude>
     <ClInclude Include="TextureGridCache.h">
+      <Filter>头文件\render</Filter>
+    </ClInclude>
+    <ClInclude Include="FontCache.h">
       <Filter>头文件\render</Filter>
     </ClInclude>
   </ItemGroup>

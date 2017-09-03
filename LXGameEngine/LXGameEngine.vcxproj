@@ -93,7 +93,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glfw3dll.lib;glm_static.lib;LXFileUtil.lib;OpenGL32.lib;soil.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;glfw3dll.lib;glm_static.lib;LXFileUtil.lib;OpenGL32.lib;soil.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
     </Link>
@@ -147,6 +147,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Director.cpp" />
+    <ClCompile Include="FontCache.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GLView.cpp" />
     <ClCompile Include="Image.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Director.h" />
+    <ClInclude Include="FontCache.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GLView.h" />
     <ClInclude Include="Image.h" />
