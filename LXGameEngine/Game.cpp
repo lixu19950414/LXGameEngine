@@ -27,7 +27,7 @@ Game * Game::getInstance()
 bool Game::start() {
 	//freetype
 	auto ins = FontCache::getInstance();
-	ins->getFaceWithKey("fonts/arrial.ttf");
+	ins->getFaceWithKey("123a.ttf");
 	return true;
 }
 

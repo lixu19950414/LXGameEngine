@@ -15,6 +15,7 @@ TextureCache::~TextureCache()
 		it.second->release();
 	}
 	_cachedTextures.clear();
+	g_pTextureCache = nullptr;
 }
 
 TextureCache * TextureCache::getInstance()

@@ -29,6 +29,7 @@ FT_Face FontCache::getFaceWithKey(const std::string & key)
 		FT_Face face;
 		if (FT_New_Face(g_FTLibrary, key.c_str(), 0, &face)) {
 			_faces.emplace(key, face);
+			LX_LOG("[FontCache]-->Create new font face with key, %s\n", key.c_str());
 			return face;
 		}
 		else {
@@ -42,4 +43,10 @@ FT_Face FontCache::getFaceWithKey(const std::string & key)
 
 FontCache::~FontCache()
 {
+	for (auto it : _faces) {
+		FT_Done_Face(it.second);
+	}
+	_faces.clear();
+	FT_Done_FreeType(g_FTLibrary);
+	g_pFontCache = nullptr;
 }

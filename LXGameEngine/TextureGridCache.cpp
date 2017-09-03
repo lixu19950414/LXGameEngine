@@ -24,6 +24,7 @@ TextureGridCache::~TextureGridCache()
 		it.second->release();
 	}
 	_cachedTextureGrids.clear();
+	g_pTextureGridCache = nullptr;
 }
 
 TextureGrid * TextureGridCache::getTextureGridForKey(const std::string & key)

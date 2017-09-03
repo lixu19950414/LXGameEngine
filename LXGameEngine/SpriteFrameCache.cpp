@@ -15,6 +15,7 @@ SpriteFrameCache::~SpriteFrameCache()
 		it.second->release();
 	}
 	_cachedSpriteFrames.clear();
+	g_pSpriteFrameCache = nullptr;
 }
 
 SpriteFrameCache * SpriteFrameCache::getInstance()

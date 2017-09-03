@@ -29,6 +29,7 @@ ShaderCache::~ShaderCache()
 		it->clear();
 	}
 	_globalShaders.clear();
+	g_pShaderCache = nullptr;
 }
 
 Shader * ShaderCache::getGlobalShader(GLOBAL_SHADERS type)
