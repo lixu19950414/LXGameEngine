@@ -24,6 +24,7 @@
 - Finished TextureGrid.
 
 ## Under construction
+-FreeType
 - Keyboard events.
 
 ## Plans
