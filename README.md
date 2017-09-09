@@ -22,6 +22,7 @@
 - Finished TextureCache.
 - Finished SpriteFrame & SpriteFrameCache.
 - Finished TextureGrid.
+- Finished creating textures using freetype via texturegrid.
 
 ## Under construction
 - FreeType
