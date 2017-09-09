@@ -37,8 +37,8 @@ bool Sprite::initWithSpriteFrame(SpriteFrame * spriteFrame)
 	_spriteFrame = spriteFrame;
 	_spriteFrame->retain();
 
-	GLint pixelWidth = (GLint)_spriteFrame->getPixelRect().getOrigin().x;
-	GLint pixelHeight = (GLint)_spriteFrame->getPixelRect().getOrigin().y;
+	GLint pixelWidth = (GLint)_spriteFrame->getPixelRect().getSize().x;
+	GLint pixelHeight = (GLint)_spriteFrame->getPixelRect().getSize().y;
 
 	setContentSize(GLfloat(pixelWidth), GLfloat(pixelHeight));
 
@@ -127,6 +127,15 @@ void Sprite::setColor(GLubyte r, GLubyte g, GLubyte b)
 		_color[2] = b;
 		_vertsDirty = true;
 	}
+}
+
+void Sprite::setShader(Shader * shader)
+{
+	if (_shader != nullptr) {
+		_shader->release();
+	}
+	shader->retain();
+	_shader = shader;
 }
 
 void Sprite::releaseCurrentSpriteFrame()

@@ -135,6 +135,12 @@
     <ClCompile Include="FontCache.cpp">
       <Filter>源文件\render</Filter>
     </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>源文件\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="LabelSprite.cpp">
+      <Filter>源文件\2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LXGameEngine.rc">
@@ -237,12 +243,24 @@
     <ClInclude Include="FontCache.h">
       <Filter>头文件\render</Filter>
     </ClInclude>
+    <ClInclude Include="lx_shaders_pvm_font.frag">
+      <Filter>头文件\lx_shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>头文件\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="LabelSprite.h">
+      <Filter>头文件\2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="lx_shaders_pvm_default.frag">
       <Filter>头文件\lx_shaders</Filter>
     </None>
     <None Include="lx_shaders_pvm_default.vert">
+      <Filter>头文件\lx_shaders</Filter>
+    </None>
+    <None Include="lx_shaders_pvm_font.vert">
       <Filter>头文件\lx_shaders</Filter>
     </None>
   </ItemGroup>

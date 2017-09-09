@@ -9,6 +9,7 @@
 #include "TextureGrid.h"
 #include "TextureGridCache.h"
 #include "FontCache.h"
+#include "LabelSprite.h"
 
 Game * g_Game = nullptr;
 
@@ -27,7 +28,28 @@ Game * Game::getInstance()
 bool Game::start() {
 	//freetype
 	auto ins = FontCache::getInstance();
-	ins->getFaceWithKey("123a.ttf");
+	ins->getFaceWithKey("Res/Fonts/arial.ttf");
+	LX_LOG("Hash %d\n", ins->getHash("nihaoa", "a", 23, true, 2));
+	LX_LOG("Hash %d\n", ins->getHash("nihaoa", "a", 23, false, 3));
+	LX_LOG("Hash %d\n", ins->getHash("nihaoa", "a", 23, false, 2));
+	//CharacterInfo* charInfo = ins->getCharacterInfo("Res/Fonts/arial.ttf", "a", 48, false, 2);
+	//charInfo->dump();
+	LabelSprite* labelSprite = new LabelSprite();
+	labelSprite->initWithString("Res/Fonts/arial.ttf", "A", 30, false, 0);
+	labelSprite->setPosition(500, 500);
+	labelSprite->setScale(1, 1);
+	labelSprite->setColor(255, 0, 0);
+	//LX_LOG("contentSize, %f, %f\n", labelSprite->getContentSize().x, labelSprite->getContentSize().y);
+	LabelSprite* labelSprite2 = new LabelSprite();
+	labelSprite2->initWithString("Res/Fonts/arial.ttf", "B", 30, false, 0);
+	labelSprite2->setPosition(600, 500);
+	labelSprite2->setScale(1, 1);
+	labelSprite2->setColor(255, 255, 0);
+
+	auto scene = Scene::getInstance();
+	scene->addChild(labelSprite);
+	scene->addChild(labelSprite2);
+	
 	return true;
 }
 

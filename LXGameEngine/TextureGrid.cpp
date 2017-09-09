@@ -107,6 +107,7 @@ bool TextureGrid::createTexture()
 		return false;
 	}
 	// 绑定当前的纹理
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glBindTexture(GL_TEXTURE_2D, _name);
 	glTexImage2D(GL_TEXTURE_2D, 0, _glTextureInternalFormat, _pixelWidth, _pixelHeight, 0, _glTextureInternalFormat, GL_UNSIGNED_BYTE, NULL);
 	// 设置纹理环绕

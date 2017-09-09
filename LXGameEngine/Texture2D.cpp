@@ -37,9 +37,11 @@ bool Texture2D::initWithImage(Image * image)
 		switch (image->getDataType())
 		{
 		case Image::IMAGE_RGBA:
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image->getWidth(), image->getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image->getData());
 			break;
 		case Image::IMAGE_RGB:
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 3);
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, image->getWidth(), image->getHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, image->getData());
 			break;
 		default:

@@ -20,6 +20,9 @@ public:
 	void setAnchorPoint(GLfloat x, GLfloat y) override;
 	void setOpacity(GLubyte opacity) override;
 	void setColor(GLubyte r, GLubyte g, GLubyte b);
+	void setShader(Shader* shader);
+
+	inline glm::vec2 getContentSize() { return _contentSize; };
 
 protected:
 	// verts
@@ -28,7 +31,6 @@ protected:
 	SpriteFrame* _spriteFrame;
 	Shader* _shader;
 	GLubyte _color[3];
-private:
 	void releaseCurrentSpriteFrame();
 	void fillPolygonInfo();
 	void setupVAOAndVBO();

@@ -16,10 +16,12 @@ public:
 	bool enableTextureGridWithKey(const std::string& key);
 	void disableTextureGridCache();
 	inline TextureGrid* getCurrentTextureGrid() { return _enabledTextureGrid; };
+	inline TextureGrid* getFontsGrid() { return _fontsGrid; };
 
 private:
 	std::unordered_map<std::string, TextureGrid*> _cachedTextureGrids;
 	TextureGrid* _enabledTextureGrid; // weak ref
+	TextureGrid* _fontsGrid; // extra font grid
 };
 
 #endif

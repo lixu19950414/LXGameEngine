@@ -151,6 +151,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GLView.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Label.cpp" />
+    <ClCompile Include="LabelSprite.cpp" />
     <ClCompile Include="LXGameEngine.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PolygonInfo.cpp" />
@@ -189,7 +191,10 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GLView.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="Label.h" />
+    <ClInclude Include="LabelSprite.h" />
     <ClInclude Include="LXGameEngine.h" />
+    <ClInclude Include="lx_shaders_pvm_font.frag" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PolygonInfo.h" />
     <ClInclude Include="Rect.h" />
@@ -213,6 +218,7 @@
   <ItemGroup>
     <None Include="lx_shaders_pvm_default.frag" />
     <None Include="lx_shaders_pvm_default.vert" />
+    <None Include="lx_shaders_pvm_font.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
