@@ -2,11 +2,7 @@
 #define LABEL_H
 
 #include "Node.h"
-#include "PolygonInfo.h"
-#include "Shader.h"
-#include "SpriteFrame.h"
-#include "SpriteFrameCache.h"
-#include "Sprite.h"
+#include "LabelSprite.h"
 #include <string>
 #include <vector>
 
@@ -16,21 +12,35 @@ class Label :
 public:
 	Label();
 	virtual ~Label();
-	//virtual void draw() override;
+	bool initWithFont(const std::string& fontName, int fontSize, const std::string& s);
+	void visit(glm::mat4& parentTransform) override;
 	void setContentSize(GLfloat width, GLfloat height) override;
 	void setAnchorPoint(GLfloat x, GLfloat y) override;
+
 	void setOpacity(GLubyte opacity) override;
 	void setColor(GLubyte r, GLubyte g, GLubyte b);
+
 	void setString(const std::string& s);
+	void setFontName(const std::string& s);
 	void setFontSize(int fontSize);
 
-protected:
-	// verts
-	bool _vertsDirty;
-	std::string _currentString;
-	std::vector<Sprite*> _sprites;
+	inline const std::string& getString() {return _currentString; };
+private:
+	void setupSprites();
+	void createSprites();
+	void refreshSpritesPos();
+	
+	void releaseCurrentSprites();
+
 	int _fontSize;
-	GLubyte _color[3];
+	bool _needRecreateSprites;
+	bool _needRefreshSpritesPos;
+	GLubyte _fontOpacity;
+	GLubyte _fontColor[3];
+	std::string _currentString;
+	std::string _fontName;
+	std::vector<LabelSprite*> _sprites;
+
 };
 
 #endif

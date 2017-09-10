@@ -10,6 +10,7 @@ public:
 	LabelSprite();
 	~LabelSprite();
 	bool initWithString(const std::string& fontName, const std::string& s, int fontSize, bool hasOutLine, int outLineSize);
+	inline CharacterInfo* getCharacterInfo() { return _characterInfo; };
 private:
 	CharacterInfo* _characterInfo;
 };

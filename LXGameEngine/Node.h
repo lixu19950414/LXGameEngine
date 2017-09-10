@@ -17,6 +17,7 @@ public:
 	virtual void draw();
 	virtual void addChild(Node* child);
 	virtual void removeChild(Node* child);
+	virtual void removeAllChildren();
 	void setPosition(GLfloat x, GLfloat y);
 	void setScale(GLfloat scaleX, GLfloat scaleY);
 	void setRotation(GLfloat rotate);

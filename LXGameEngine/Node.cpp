@@ -90,6 +90,15 @@ void Node::removeChild(Node * child)
 	}
 }
 
+void Node::removeAllChildren()
+{
+	for (auto it : _children) {
+		it->_parent = nullptr;
+		it->release();
+	}
+	_children.clear();
+}
+
 void Node::setPosition(GLfloat x, GLfloat y)
 {
 	_position = glm::vec3(x, y, 0.0f);

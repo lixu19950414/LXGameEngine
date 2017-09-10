@@ -10,6 +10,7 @@
 #include "TextureGridCache.h"
 #include "FontCache.h"
 #include "LabelSprite.h"
+#include "Label.h"
 
 Game * g_Game = nullptr;
 
@@ -32,23 +33,48 @@ bool Game::start() {
 	LX_LOG("Hash %d\n", ins->getHash("nihaoa", "a", 23, true, 2));
 	LX_LOG("Hash %d\n", ins->getHash("nihaoa", "a", 23, false, 3));
 	LX_LOG("Hash %d\n", ins->getHash("nihaoa", "a", 23, false, 2));
-	//CharacterInfo* charInfo = ins->getCharacterInfo("Res/Fonts/arial.ttf", "a", 48, false, 2);
-	//charInfo->dump();
-	LabelSprite* labelSprite = new LabelSprite();
-	labelSprite->initWithString("Res/Fonts/arial.ttf", "A", 30, false, 0);
-	labelSprite->setPosition(500, 500);
-	labelSprite->setScale(1, 1);
-	labelSprite->setColor(255, 0, 0);
-	//LX_LOG("contentSize, %f, %f\n", labelSprite->getContentSize().x, labelSprite->getContentSize().y);
-	LabelSprite* labelSprite2 = new LabelSprite();
-	labelSprite2->initWithString("Res/Fonts/arial.ttf", "B", 30, false, 0);
-	labelSprite2->setPosition(600, 500);
-	labelSprite2->setScale(1, 1);
-	labelSprite2->setColor(255, 255, 0);
+	////CharacterInfo* charInfo = ins->getCharacterInfo("Res/Fonts/arial.ttf", "a", 48, false, 2);
+	////charInfo->dump();
+	//LabelSprite* labelSprite = new LabelSprite();
+	//labelSprite->initWithString("Res/Fonts/arial.ttf", "A", 30, false, 0);
+	//labelSprite->setPosition(500, 500);
+	//labelSprite->setScale(1, 1);
+	//labelSprite->setColor(255, 0, 0);
+	////LX_LOG("contentSize, %f, %f\n", labelSprite->getContentSize().x, labelSprite->getContentSize().y);
+	//LabelSprite* labelSprite2 = new LabelSprite();
+	//labelSprite2->initWithString("Res/Fonts/arial.ttf", "B", 40, false, 0);
+	//labelSprite2->setPosition(600, 500);
+	//labelSprite2->setScale(1, 1);
+	//labelSprite2->setColor(255, 255, 0);
 
 	auto scene = Scene::getInstance();
-	scene->addChild(labelSprite);
-	scene->addChild(labelSprite2);
+	/*scene->addChild(labelSprite);
+	scene->addChild(labelSprite2);*/
+
+	Label* lbl = new Label();
+	scene->addChild(lbl);
+	lbl->initWithFont("Res/Fonts/arial.ttf", 24, "abcdefghijklmnopqrstuvwxyz");
+	lbl->setPosition(300, 300);
+	lbl->setColor(255, 0, 0);
+	lbl->setOpacity(100);
+	lbl->setScale(5, 3);
+	lbl->setRotation(30);
+
+	//lbl->setString("aeiou");
+
+	Button* btn = new (std::nothrow) Button();
+	btn->initWithFile("Res/jvren.png");
+	btn->setCallback([lbl](int x, int y) {lbl->setString(lbl->getString() + "123"); });
+	scene->addChild(btn);
+
+	lbl->scheduleUpdate(5.0, 1, [lbl](float dt) {lbl->setString(lbl->getString() + "123"); });
+
+	//// Create fontchar map
+	//Texture2D* texture = new Texutre2D();
+	//SpriteFrame* spriteFrame = new SpriteFrame();
+	//spriteFrame->initWithTextureRect(TextureGridCache::getInstance()->getFontsGrid()->get);
+	//Sprite* sprite = new Sprite();
+	//sprite->init
 	
 	return true;
 }
