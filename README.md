@@ -23,9 +23,10 @@
 - Finished SpriteFrame & SpriteFrameCache.
 - Finished TextureGrid.
 - Finished creating textures using freetype via texturegrid.
+- Finished Label.
 
 ## Under construction
-- FreeType
+- Font stroke & utf8.
 - Keyboard events.
 
 ## Plans
