@@ -78,6 +78,7 @@ const GridPoint & TextureGrid::autoFitAndGetGridPoint(int pixelWidth, int pixelH
 		_freeGrids.pop_back();
 		glBindTexture(GL_TEXTURE_2D, _name);
 		//LX_LOG("glTexSubImage2D %d %d, %d, %d, %d %d\n", _name, gp._x * _partPixelWidth, gp._y * _partPixelHeight, pixelWidth, pixelHeight, strlen((const char*)data));
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 		glTexSubImage2D(GL_TEXTURE_2D, 0, gp._x * _partPixelWidth, _pixelHeight - gp._y * _partPixelHeight - pixelHeight, pixelWidth, pixelHeight, _glTextureInternalFormat, dataType, data);
 		//glTexSubImage2D(GL_TEXTURE_2D, 0, gp._x * _partPixelWidth, gp._y * _partPixelHeight, pixelWidth, pixelHeight, _glTextureInternalFormat, dataType, data);
 		//glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pixelWidth, pixelHeight, _glTextureInternalFormat, dataType, data);

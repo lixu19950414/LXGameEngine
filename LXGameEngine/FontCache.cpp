@@ -67,7 +67,7 @@ CharacterInfo * FontCache::getCharacterInfo(const std::string & fontName, const 
 	auto it = _characters.find(thisHash);
 	if (it == _characters.end()) {
 		FT_Face face = getFaceWithKey(fontName);
-		FT_Set_Pixel_Sizes(face, 0, fontSize);
+		FT_Set_Char_Size(face, 0, fontSize * 64, 72, 72);
 		if (FT_Load_Char(face, character.c_str()[0], FT_LOAD_RENDER)) {
 			LX_LOG("Failed to load char\n");
 			return nullptr;
