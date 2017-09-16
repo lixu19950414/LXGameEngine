@@ -8,7 +8,7 @@ TextureGridCache::TextureGridCache():
 	_enabledTextureGrid(nullptr)
 {
 	_fontsGrid = new (std::nothrow) TextureGrid();
-	_fontsGrid->initWithGridPixelSize(2048, 2048, 32, 32, GL_RED);
+	_fontsGrid->initWithGridPixelSize(2048, 2048, 64, 64, GL_RED);
 	LX_LOG("Create fonts grid in gridcahce.\n");
 }
 

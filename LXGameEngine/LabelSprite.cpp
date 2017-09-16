@@ -19,8 +19,8 @@ LabelSprite::~LabelSprite()
 
 bool LabelSprite::initWithString(const std::string& fontName, const std::string & s, int fontSize, bool hasOutLine, int outLineSize)
 {
-	char ss = s.c_str()[0];
-	_characterInfo = FontCache::getInstance()->getCharacterInfo(fontName, s, fontSize, false, 0);
+	// char ss = s.c_str()[0];
+	_characterInfo = FontCache::getInstance()->getCharacterInfo(fontName, s, fontSize, hasOutLine, outLineSize);
 	return this->initWithSpriteFrame(_characterInfo->getSpriteFrame());
 }
 

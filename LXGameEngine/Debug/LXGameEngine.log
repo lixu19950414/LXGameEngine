@@ -1,5 +1,6 @@
-﻿  TextureGrid.cpp
-  Texture2D.cpp
-  正在生成代码...
+﻿  FontCache.cpp
+c:\projects\lxgameengine\lxgameengine\lxgameengine\fontcache.cpp(134): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+c:\projects\lxgameengine\lxgameengine\lxgameengine\fontcache.cpp(140): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+c:\projects\lxgameengine\lxgameengine\lxgameengine\fontcache.cpp(141): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.exe
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.pdb (Partial PDB)

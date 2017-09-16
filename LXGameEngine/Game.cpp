@@ -35,11 +35,11 @@ bool Game::start() {
 	LX_LOG("Hash %d\n", ins->getHash("nihaoa", "a", 23, false, 2));
 	////CharacterInfo* charInfo = ins->getCharacterInfo("Res/Fonts/arial.ttf", "a", 48, false, 2);
 	////charInfo->dump();
-	//LabelSprite* labelSprite = new LabelSprite();
-	//labelSprite->initWithString("Res/Fonts/arial.ttf", "A", 30, false, 0);
-	//labelSprite->setPosition(500, 500);
-	//labelSprite->setScale(1, 1);
-	//labelSprite->setColor(255, 0, 0);
+	LabelSprite* labelSprite = new LabelSprite();
+	labelSprite->initWithString("Res/Fonts/arial.ttf", "a", 30, true, 1);
+	labelSprite->setPosition(800, 500);
+	labelSprite->setScale(1, 1);
+	labelSprite->setColor(255, 0, 0);
 	////LX_LOG("contentSize, %f, %f\n", labelSprite->getContentSize().x, labelSprite->getContentSize().y);
 	//LabelSprite* labelSprite2 = new LabelSprite();
 	//labelSprite2->initWithString("Res/Fonts/arial.ttf", "B", 40, false, 0);
@@ -48,12 +48,12 @@ bool Game::start() {
 	//labelSprite2->setColor(255, 255, 0);
 
 	auto scene = Scene::getInstance();
-	/*scene->addChild(labelSprite);
-	scene->addChild(labelSprite2);*/
+	scene->addChild(labelSprite);
+	// scene->addChild(labelSprite2);
 
 	Label* lbl = new Label();
 	scene->addChild(lbl);
-	lbl->initWithFont("Res/Fonts/arial.ttf", 32, "abcdefghijklmnopqrstuvwxyz");
+	lbl->initWithFont("Res/Fonts/arial.ttf", 64, "abcdefghijklmnopqrstuvwxyz");
 	lbl->setPosition(300, 300);
 	lbl->setColor(255, 0, 0);
 	lbl->setOpacity(255);

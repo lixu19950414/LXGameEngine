@@ -5,12 +5,14 @@
 #include <string>
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#include FT_STROKER_H
 #include "SpriteFrame.h"
 
 class CharacterInfo {
 public:
 	CharacterInfo();
 	bool initWithGlyph(FT_GlyphSlot glyph, SpriteFrame* sp);
+	bool initWithOutlineInfo(int width, int height, SpriteFrame* sp);
 	inline SpriteFrame* getSpriteFrame() { return _spriteFrame; };
 	inline GLuint getAdvance() { return _advance; };
 	inline glm::ivec2 getSize() { return _size; };
@@ -37,6 +39,7 @@ public:
 private:
 	std::unordered_map <std::string, FT_Face> _faces;
 	std::unordered_map <std::size_t, CharacterInfo*> _characters;
+	FT_Stroker _stroker;
 };
 
 #endif
