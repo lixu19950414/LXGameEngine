@@ -23,11 +23,10 @@
 - Finished SpriteFrame & SpriteFrameCache.
 - Finished TextureGrid.
 - Finished creating textures using freetype via texturegrid.
-- Finished Label.
+- Finished Label and stroke.
 
 ## Under construction
-- Font stroke & utf8.
-- Keyboard events.
+
 
 ## Plans
 - BlendFunc.
