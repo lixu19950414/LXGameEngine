@@ -53,12 +53,14 @@ bool Game::start() {
 
 	Label* lbl = new Label();
 	scene->addChild(lbl);
-	lbl->initWithFont("Res/Fonts/arial.ttf", 64, "abcdefghijklmnopqrstuvwxyz");
+	lbl->initWithFont("Res/Fonts/arial.ttf", 56, "abcdefghijklmnopqrstuvwxyz");
 	lbl->setPosition(300, 300);
 	lbl->setColor(255, 0, 0);
-	lbl->setOpacity(255);
+	lbl->setOpacity(125);
 	//lbl->setScale(5, 3);
-	lbl->setRotation(30);
+	//lbl->setRotation(30);
+	lbl->setOutlineSize(2);
+	lbl->setOutlineColor(0, 255, 0);
 
 	//lbl->setString("aeiou");
 

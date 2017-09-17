@@ -19,10 +19,12 @@ public:
 
 	void setOpacity(GLubyte opacity) override;
 	void setColor(GLubyte r, GLubyte g, GLubyte b);
+	void setOutlineColor(GLubyte r, GLubyte g, GLubyte b);
 
 	void setString(const std::string& s);
 	void setFontName(const std::string& s);
 	void setFontSize(int fontSize);
+	void setOutlineSize(int outlineSize);
 
 	inline const std::string& getString() {return _currentString; };
 private:
@@ -33,14 +35,16 @@ private:
 	void releaseCurrentSprites();
 
 	int _fontSize;
+	int _fontOutlineSize;
 	bool _needRecreateSprites;
 	bool _needRefreshSpritesPos;
 	GLubyte _fontOpacity;
 	GLubyte _fontColor[3];
+	GLubyte _fontOutlineColor[3];
 	std::string _currentString;
 	std::string _fontName;
 	std::vector<LabelSprite*> _sprites;
-
+	std::vector<LabelSprite*> _outlineSprites;
 };
 
 #endif

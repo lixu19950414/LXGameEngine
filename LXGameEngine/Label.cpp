@@ -4,6 +4,7 @@
 
 Label::Label() :
 	_fontSize(24),
+	_fontOutlineSize(0),
 	_fontOpacity(255),
 	_needRecreateSprites(true),
 	_needRefreshSpritesPos(true),
@@ -13,6 +14,10 @@ Label::Label() :
 	_fontColor[0] = 0;
 	_fontColor[1] = 0;
 	_fontColor[2] = 0;
+	_fontOutlineColor[0] = 0;
+	_fontOutlineColor[1] = 0;
+	_fontOutlineColor[2] = 0;
+	//memset(_fontOutlineColor, 0, 3);
 }
 
 
@@ -80,16 +85,31 @@ void Label::setOpacity(GLubyte opacity)
 		for (auto sprite : _sprites) {
 			sprite->setOpacity(opacity);
 		}
+		for (auto sprite : _outlineSprites) {
+			sprite->setOpacity(opacity);
+		}
 	}
 }
 
 void Label::setColor(GLubyte r, GLubyte g, GLubyte b)
 {
-	if (_fontColor[0] != r || _fontColor[1] != r || _fontColor[2] != b) {
+	if (_fontColor[0] != r || _fontColor[1] != g || _fontColor[2] != b) {
 		_fontColor[0] = r;
 		_fontColor[1] = g;
 		_fontColor[2] = b;
 		for (auto sprite : _sprites) {
+			sprite->setColor(r, g, b);
+		}
+	}
+}
+
+void Label::setOutlineColor(GLubyte r, GLubyte g, GLubyte b)
+{
+	if (_fontOutlineColor[0] != r || _fontOutlineColor[1] != g || _fontOutlineColor[2] != b) {
+		_fontOutlineColor[0] = r;
+		_fontOutlineColor[1] = g;
+		_fontOutlineColor[2] = b;
+		for (auto sprite : _outlineSprites) {
 			sprite->setColor(r, g, b);
 		}
 	}
@@ -119,6 +139,14 @@ void Label::setFontSize(int fontSize)
 	}
 }
 
+void Label::setOutlineSize(int outlineSize)
+{
+	if (outlineSize != _fontOutlineSize) {
+		_fontOutlineSize = outlineSize;
+		_needRecreateSprites = true;
+	}
+}
+
 void Label::setupSprites()
 {
 	if (_needRecreateSprites) {
@@ -135,27 +163,70 @@ void Label::setupSprites()
 void Label::createSprites()
 {
 	releaseCurrentSprites();
-	for (auto it = _currentString.begin(); it != _currentString.end(); ++it) {
-		LabelSprite* ls = new (std::nothrow) LabelSprite();
-		std::string temp;
-		temp.push_back(*it);
-		ls->initWithString(_fontName, temp, _fontSize, false, 0);
-		ls->setColor(_fontColor[0], _fontColor[1], _fontColor[2]);
-		ls->setOpacity(_fontOpacity);
-		addChild(ls);
-		_sprites.push_back(ls);
+	if (_fontOutlineSize > 0) {
+		for (auto it = _currentString.begin(); it != _currentString.end(); ++it) {
+			LabelSprite* ls = new (std::nothrow) LabelSprite();
+			std::string temp;
+			temp.push_back(*it);
+			ls->initWithString(_fontName, temp, _fontSize, false, 0);
+			ls->setColor(_fontColor[0], _fontColor[1], _fontColor[2]);
+			ls->setOpacity(_fontOpacity);
+
+			LabelSprite* outline = new (std::nothrow) LabelSprite();
+			std::string temp2;
+			temp2.push_back(*it);
+			outline->initWithString(_fontName, temp, _fontSize, true, _fontOutlineSize);
+			outline->setColor(_fontOutlineColor[0], _fontOutlineColor[1], _fontOutlineColor[2]);
+			outline->setOpacity(_fontOpacity);
+
+			addChild(outline);
+			addChild(ls);
+			_sprites.push_back(ls);
+			_outlineSprites.push_back(outline);
+		}
+	}
+	else {
+		for (auto it = _currentString.begin(); it != _currentString.end(); ++it) {
+			LabelSprite* ls = new (std::nothrow) LabelSprite();
+			std::string temp;
+			temp.push_back(*it);
+			ls->initWithString(_fontName, temp, _fontSize, false, 0);
+			ls->setColor(_fontColor[0], _fontColor[1], _fontColor[2]);
+			ls->setOpacity(_fontOpacity);
+			addChild(ls);
+			_sprites.push_back(ls);
+		}
 	}
 }
 
 void Label::refreshSpritesPos()
 {
 	glm::vec2 startPos = _contentSize * -_anchorPoint;
-	for (auto sprite : _sprites) {
-		CharacterInfo* characterInfo = sprite->getCharacterInfo();
-		glm::vec2 bearing = characterInfo->getBearing();
-		glm::vec2 size = characterInfo->getSize();
-		sprite->setPosition(startPos.x + bearing.x, startPos.y - (size.y - bearing.y));
-		startPos.x += characterInfo->getAdvance() >> 6;
+	if (_fontOutlineSize > 0) {
+		for (int i = 0; i < _sprites.size(); ++i) {
+			CharacterInfo* characterInfo = _sprites.at(i)->getCharacterInfo();
+			glm::vec2 bearing = characterInfo->getBearing();
+			glm::vec2 size = characterInfo->getSize();
+			_sprites.at(i)->setPosition(startPos.x + bearing.x, startPos.y - (size.y - bearing.y));
+
+			CharacterInfo* outlineInfo = _outlineSprites.at(i)->getCharacterInfo();
+			glm::vec2 outlineSize = outlineInfo->getSize();
+			glm::vec2 offset = size - outlineSize;
+			//LX_LOG("offset: x: %f, y: %f\n", offset.x, offset.y);
+			//glm::vec2 offset;
+			_outlineSprites.at(i)->setPosition(startPos.x + bearing.x + offset.x / 2.0, startPos.y - (size.y - bearing.y) + offset.y / 2.0);
+
+			startPos.x += characterInfo->getAdvance() >> 6;
+		}
+	}
+	else {
+		for (auto sprite : _sprites) {
+			CharacterInfo* characterInfo = sprite->getCharacterInfo();
+			glm::vec2 bearing = characterInfo->getBearing();
+			glm::vec2 size = characterInfo->getSize();
+			sprite->setPosition(startPos.x + bearing.x, startPos.y - (size.y - bearing.y));
+			startPos.x += characterInfo->getAdvance() >> 6;
+		}
 	}
 }
 
@@ -165,7 +236,11 @@ void Label::releaseCurrentSprites()
 	for (auto sprite : _sprites) {
 		sprite->release();
 	}
+	for (auto sprite : _outlineSprites) {
+		sprite->release();
+	}
 	_sprites.clear();
+	_outlineSprites.clear();
 }
 
 
