@@ -23,8 +23,8 @@ public:
 	inline void pushIndices(GLint index) { _indices.push_back(index); };
 	inline int getVertsCount() { return _verts.size(); };
 	inline int getIndicesCount() { return _indices.size(); };
-	inline GLvoid* getVerts() { return &_verts[0]; };
-	inline GLvoid* getIndices() { return &_indices[0]; };
+	inline GLvoid* getVerts() { if (getVertsCount()) return &_verts[0]; return nullptr; };
+	inline GLvoid* getIndices() { if (getIndicesCount()) return &_indices[0]; return nullptr; };
 private:
 	std::vector<V3F_C4B_T2F> _verts;
 	std::vector<GLuint> _indices;

@@ -4,6 +4,8 @@
 #include "lx_shaders_pvm_default.vert"
 #include "lx_shaders_pvm_font.frag"
 #include "lx_shaders_pvm_font.vert"
+#include "lx_shaders_particle.vert"
+#include "lx_shaders_particle.frag"
 
 ShaderCache* g_pShaderCache = nullptr;
 
@@ -26,6 +28,9 @@ ShaderCache::ShaderCache()
 	shaders_pvm_font->initWithByteArrays(lx_shaders_pvm_font_vert, lx_shaders_pvm_font_frag);
 	_globalShaders.push_back(shaders_pvm_font);
 	
+	Shader* shaders_particle = new Shader();
+	shaders_particle->initWithByteArrays(lx_shaders_particle_vert, lx_shaders_particle_frag);
+	_globalShaders.push_back(shaders_particle);
 }
 
 

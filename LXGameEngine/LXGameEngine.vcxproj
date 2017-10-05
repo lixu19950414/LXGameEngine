@@ -155,6 +155,7 @@
     <ClCompile Include="LabelSprite.cpp" />
     <ClCompile Include="LXGameEngine.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="ParticleEmitter.cpp" />
     <ClCompile Include="PolygonInfo.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Ref.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="LXGameEngine.h" />
     <ClInclude Include="lx_shaders_pvm_font.frag" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="ParticleEmitter.h" />
     <ClInclude Include="PolygonInfo.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Ref.h" />
@@ -216,6 +218,8 @@
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="lx_shaders_particle.frag" />
+    <None Include="lx_shaders_particle.vert" />
     <None Include="lx_shaders_pvm_default.frag" />
     <None Include="lx_shaders_pvm_default.vert" />
     <None Include="lx_shaders_pvm_font.vert" />

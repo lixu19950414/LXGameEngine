@@ -141,6 +141,9 @@
     <ClCompile Include="LabelSprite.cpp">
       <Filter>源文件\2d</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleEmitter.cpp">
+      <Filter>源文件\2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LXGameEngine.rc">
@@ -252,6 +255,9 @@
     <ClInclude Include="LabelSprite.h">
       <Filter>头文件\2d</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleEmitter.h">
+      <Filter>头文件\2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="lx_shaders_pvm_default.frag">
@@ -261,6 +267,12 @@
       <Filter>头文件\lx_shaders</Filter>
     </None>
     <None Include="lx_shaders_pvm_font.vert">
+      <Filter>头文件\lx_shaders</Filter>
+    </None>
+    <None Include="lx_shaders_particle.frag">
+      <Filter>头文件\lx_shaders</Filter>
+    </None>
+    <None Include="lx_shaders_particle.vert">
       <Filter>头文件\lx_shaders</Filter>
     </None>
   </ItemGroup>

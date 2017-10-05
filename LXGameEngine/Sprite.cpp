@@ -18,7 +18,9 @@ _vertsDirty(true)
 Sprite::~Sprite()
 {
 	releaseCurrentSpriteFrame();
-	_shader->release();
+	if (_shader != nullptr) {
+		_shader->release();
+	}
 }
 
 bool Sprite::initWithFile(const std::string & filename)
@@ -167,10 +169,10 @@ void Sprite::fillPolygonInfo()
 	_rb.setColor(_color[0], _color[1], _color[2], _opacity);
 	_rt.setColor(_color[0], _color[1], _color[2], _opacity);
 
-	const glm::vec2 lb = _spriteFrame->getLBTexCoord();
-	const glm::vec2 lt = _spriteFrame->getLTTexCoord();
-	const glm::vec2 rb = _spriteFrame->getRBTexCoord();
-	const glm::vec2 rt = _spriteFrame->getRTTexCoord();
+	const glm::vec2& lb = _spriteFrame->getLBTexCoord();
+	const glm::vec2& lt = _spriteFrame->getLTTexCoord();
+	const glm::vec2& rb = _spriteFrame->getRBTexCoord();
+	const glm::vec2& rt = _spriteFrame->getRTTexCoord();
 	_lb.setUV(lb.x, lb.y);
 	_lt.setUV(lt.x, lt.y);
 	_rb.setUV(rb.x, rb.y);

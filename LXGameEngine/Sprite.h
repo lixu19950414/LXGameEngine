@@ -23,6 +23,7 @@ public:
 	void setShader(Shader* shader);
 
 	inline glm::vec2 getContentSize() { return _contentSize; };
+	inline SpriteFrame* getSpriteFrame() { return _spriteFrame; };
 
 protected:
 	// verts

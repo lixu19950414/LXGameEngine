@@ -47,6 +47,8 @@ public:
 	void scheduleUpdate(float interval, int leftTimes, std::function<void(float)> func, int priority = 0);
 	void releaseCurrentTimer();
 
+	inline glm::vec3 getPosition() { return _position; };
+
 protected:
 	void updateTransform();
 	virtual void updateAABB();
