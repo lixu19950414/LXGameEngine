@@ -26,11 +26,10 @@
 - Finished Label and stroke.
 
 ## Under construction
-
+- Particles.
 
 ## Plans
 - BlendFunc.
 - glStateBlock.
 - Actions.
-- Particles.
 - Support OpenAL.
