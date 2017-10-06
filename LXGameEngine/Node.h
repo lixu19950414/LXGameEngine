@@ -48,6 +48,7 @@ public:
 	void releaseCurrentTimer();
 
 	inline glm::vec3 getPosition() { return _position; };
+	void setBlendFunc(GLenum src, GLenum dst);
 
 protected:
 	void updateTransform();
@@ -83,6 +84,9 @@ protected:
 	bool _swallowTouches;
 
 	Timer* _timer;
+	
+	GLenum _blendSrc;
+	GLenum _blendDst;
 };
 
 #endif

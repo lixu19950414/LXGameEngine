@@ -20,7 +20,9 @@ Node::Node() :
 	_opacity(255),
 	_aabb(),
 	_swallowTouches(false),
-	_timer(nullptr)
+	_timer(nullptr),
+	_blendSrc(GL_SRC_ALPHA),
+	_blendDst(GL_ONE_MINUS_SRC_ALPHA)
 {
 }
 
@@ -237,6 +239,12 @@ void Node::releaseCurrentTimer() {
 		_timer->release();
 		_timer = nullptr;
 	}
+}
+
+inline void Node::setBlendFunc(GLenum src, GLenum dst)
+{
+	_blendSrc = src;
+	_blendDst = dst;
 }
 
 

@@ -225,6 +225,7 @@ void ParticleEmitter::draw()
 
 	glActiveTexture(GL_TEXTURE0); //在绑定纹理之前先激活纹理单元
 	_spriteFrame->bindTexture();
+	glBlendFunc(_blendSrc, _blendDst);
 	glBindVertexArray(_vao);
 	glDrawElements(GL_TRIANGLES, _polyInfo.getIndicesCount(), GL_UNSIGNED_INT, 0);
 	//LX_LOG("%d\n", _polyInfo.getIndicesCount());
