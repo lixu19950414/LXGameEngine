@@ -28,24 +28,27 @@ Game * Game::getInstance()
 
 
 bool Game::start() {
-	//Particle
-	SpriteFrame* spriteFrame = SpriteFrameCache::getInstance()->addSpriteFrameWithFileName("Res/Particle/smoke.png");
-	LX_LOG("%f, %f\n", spriteFrame->getPixelRect().getSize().x, spriteFrame->getPixelRect().getSize().y);
-	ParticleEmitter* pe = new ParticleEmitter();
-	//pe->autoRelease();
-	pe->initWithParticleInfo(1000, 100, glm::vec2(0.0, 400.0), 2.0, spriteFrame);
-	pe->setPosition(200, 200);
-	pe->scheduleUpdate(0.015, -1, [pe](float dt) {
-		pe->setPosition(pe->getPosition().x + 1.0, pe->getPosition().y);
+	auto sceneeeee = Scene::getInstance();
+	sceneeeee->scheduleUpdate(1.0, 1, [](float dt) {
+		//Particle
+		SpriteFrame* spriteFrame = SpriteFrameCache::getInstance()->addSpriteFrameWithFileName("Res/Particle/smoke.png");
+		LX_LOG("%f, %f\n", spriteFrame->getPixelRect().getSize().x, spriteFrame->getPixelRect().getSize().y);
+		ParticleEmitter* pe = new ParticleEmitter();
+		//pe->autoRelease();
+		pe->initWithParticleInfo(100, 100, glm::vec2(0.0, 400.0), 2.0, spriteFrame);
+		pe->setPosition(200, 200);
+		pe->scheduleUpdate(0.015, -1, [pe](float dt) {
+			pe->setPosition(pe->getPosition().x + 1.0, pe->getPosition().y);
+		});
+
+		Sprite* sprite3 = new (std::nothrow) Sprite();
+		sprite3->initWithFile("Res/Particle/smoke.png");
+		sprite3->setPosition(300, 300);
+
+		auto scene = Scene::getInstance();
+		scene->addChild(pe);
+		scene->addChild(sprite3);
 	});
-
-	Sprite* sprite3 = new (std::nothrow) Sprite();
-	sprite3->initWithFile("Res/Particle/smoke.png");
-	sprite3->setPosition(300, 300);
-
-	auto scene = Scene::getInstance();
-	scene->addChild(pe);
-	scene->addChild(sprite3);
 	return true;
 }
 
