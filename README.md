@@ -24,12 +24,12 @@
 - Finished TextureGrid.
 - Finished creating textures using freetype via texturegrid.
 - Finished Label and stroke.
+- BlendFunc.
 
 ## Under construction
 - Particles.
 
 ## Plans
-- BlendFunc.
 - glStateBlock.
 - Actions.
 - Support OpenAL.
