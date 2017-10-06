@@ -13,12 +13,29 @@ class ParticleEmitter :
 {
 public:
 	struct Particle {
-		GLfloat _lifeTime;
-		glm::vec2 _worldPosition;
+		
+		float _leftLifespan;
+		float _particleLifespan;
+		
+		float _startPositionX;
+		float _finishPositionX;
+		float _startPositionY;
+		float _finishPositionY;
+
+		float _startParticleSize;
+		float _finishParticleSize;
+		float _startColorRed;
+		float _startColorGreen;
+		float _startColorBlue;
+		float _startColorAlpha;
+		float _finishColorRed;
+		float _finishColorGreen;
+		float _finishColorBlue;
+		float _finishColorAlpha;
 	};
 public:
 	ParticleEmitter();
-	bool initWithParticleInfo(unsigned int maxParticles, unsigned int generateRate, const glm::vec2& velocity, float lifeTime, SpriteFrame* sp);
+	bool initWithParticleInfo(unsigned int maxParticles, unsigned int generateRate, SpriteFrame* sp);
 	~ParticleEmitter();
 
 protected:
@@ -31,16 +48,49 @@ protected:
 	virtual void draw() override;
 
 private:
-	unsigned int _maxParticels;
-	unsigned int _generateRate;
-	GLfloat _lifeTime;
-	glm::vec2 _velocity;
-	GLubyte _color[3];
 	std::vector<Particle> _particles;
 	PolygonInfo _polyInfo;
 
 	SpriteFrame* _spriteFrame;
 	Shader* _shader;
+
+	int _maxParticels;
+	int _generateRate;
+	float _particleLifespan;
+	float _particleLifespanVariance;
+
+	float _sourcePositionVariancex;
+	float _sourcePositionVariancey;
+
+	float _startParticleSize;
+	float _startParticleSizeVariance;
+	float _finishParticleSize;
+	float _finishParticleSizeVariance;
+
+	float _angle;
+	float _angleVariance;
+	float _speed;
+	float _speedVariance;
+
+	float _startColorRed;
+	float _startColorGreen;
+	float _startColorBlue;
+	float _startColorAlpha;
+	float _startColorVarianceRed;
+	float _startColorVarianceGreen;
+	float _startColorVarianceBlue;
+	float _startColorVarianceAlpha;
+	float _finishColorRed;
+	float _finishColorGreen;
+	float _finishColorBlue;
+	float _finishColorAlpha;
+	float _finishColorVarianceRed;
+	float _finishColorVarianceGreen;
+	float _finishColorVarianceBlue;
+	float _finishColorVarianceAlpha;
+
+	int _blendFuncDestination;
+	int _blendFuncSource;
 };
 
 #endif

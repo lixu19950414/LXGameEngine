@@ -203,7 +203,7 @@ void Label::refreshSpritesPos()
 {
 	glm::vec2 startPos = _contentSize * -_anchorPoint;
 	if (_fontOutlineSize > 0) {
-		for (int i = 0; i < _sprites.size(); ++i) {
+		for (unsigned int i = 0; i < _sprites.size(); ++i) {
 			CharacterInfo* characterInfo = _sprites.at(i)->getCharacterInfo();
 			glm::vec2 bearing = characterInfo->getBearing();
 			glm::vec2 size = characterInfo->getSize();
@@ -214,7 +214,7 @@ void Label::refreshSpritesPos()
 			glm::vec2 offset = size - outlineSize;
 			//LX_LOG("offset: x: %f, y: %f\n", offset.x, offset.y);
 			//glm::vec2 offset;
-			_outlineSprites.at(i)->setPosition(startPos.x + bearing.x + offset.x / 2.0, startPos.y - (size.y - bearing.y) + offset.y / 2.0);
+			_outlineSprites.at(i)->setPosition(startPos.x + bearing.x + offset.x / 2.0f, startPos.y - (size.y - bearing.y) + offset.y / 2.0f);
 
 			startPos.x += characterInfo->getAdvance() >> 6;
 		}

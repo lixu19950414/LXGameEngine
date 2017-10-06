@@ -1,25 +1,51 @@
 #include "stdafx.h"
 #include "ParticleEmitter.h"
 #include "Director.h"
+#include "Common.h"
 
 
 ParticleEmitter::ParticleEmitter():
-_maxParticels(0),
-_lifeTime(0.0),
-_velocity(0.0, 0.0),
-_generateRate(0),
 _spriteFrame(nullptr),
-_shader(nullptr)
+_shader(nullptr),
+_maxParticels(300),
+_generateRate(60),
+_particleLifespan(3.0f),
+_particleLifespanVariance(0.25f),
+_sourcePositionVariancex(40.0f),
+_sourcePositionVariancey(20.0f),
+_startParticleSize(54.0f),
+_startParticleSizeVariance(10.0f),
+_finishParticleSize(54.0f),
+_finishParticleSizeVariance(0.0f),
+_angle(90.0f),
+_angleVariance(10.0f),
+_speed(60.0f),
+_speedVariance(20.0f),
+_startColorRed(0.75f),
+_startColorGreen(0.25f),
+_startColorBlue(0.11f),
+_startColorAlpha(1.0f),
+_startColorVarianceRed(0.0f),
+_startColorVarianceGreen(0.0f),
+_startColorVarianceBlue(0.0f),
+_startColorVarianceAlpha(0.0f),
+_finishColorRed(0.0f),
+_finishColorGreen(0.0f),
+_finishColorBlue(0.0f),
+_finishColorAlpha(1.0f),
+_finishColorVarianceRed(0.0f),
+_finishColorVarianceGreen(0.0f),
+_finishColorVarianceBlue(0.0f),
+_finishColorVarianceAlpha(0.0f),
+_blendFuncDestination(1),
+_blendFuncSource(770)
 {
-	_color[0] = 255; _color[1] = 255; _color[2] = 255;
 	setShader(ShaderCache::getInstance()->getGlobalShader(ShaderCache::LX_SHADERS_PARTICLE));
 }
 
-bool ParticleEmitter::initWithParticleInfo(unsigned int maxParticles, unsigned int generateRate, const glm::vec2& velocity, float lifeTime, SpriteFrame* sp)
+bool ParticleEmitter::initWithParticleInfo(unsigned int maxParticles, unsigned int generateRate, SpriteFrame* sp)
 {
 	_maxParticels = maxParticles;
-	_lifeTime = lifeTime;
-	_velocity = velocity;
 	_generateRate = generateRate;
 	setSpriteFrame(sp);
 	return true;
@@ -39,38 +65,58 @@ void ParticleEmitter::updateParticles()
 	float dt = Director::getInstance()->getDeltaTime();
 	auto it = _particles.begin();
 	while (it != _particles.end()) {
-		it->_lifeTime -= dt;
-		if (it->_lifeTime <= 0.0) {
+		it->_leftLifespan -= dt;
+		if (it->_leftLifespan <= 0.0) {
 			it = _particles.erase(it);
 		}
 		else {
-			it->_worldPosition += _velocity * dt;
 			++it;
 		}
 	}
 	// Create new particles
 	int leftSize = _maxParticels - _particles.size();
 	int newParticlesCnt = _generateRate * dt;
+
+	int needCreateParticleSize;
 	if (leftSize >= newParticlesCnt) {
-		glm::vec4 worldPos = _modelTransform * glm::vec4(0.0, 0.0, 0.0, 1.0);
-		for (int i = 0; i < newParticlesCnt; ++i) {
-			Particle p;
-			p._worldPosition = worldPos;
-			p._lifeTime = _lifeTime;
-			_particles.push_back(p);
-		}
+		needCreateParticleSize = newParticlesCnt;
 	}
 	else if (leftSize > 0) {
-		glm::vec4 worldPos = _modelTransform * glm::vec4(0.0, 0.0, 0.0, 1.0);
-		for (int i = 0; i < leftSize; ++i) {
-			Particle p;
-			p._worldPosition = worldPos;
-			p._lifeTime = _lifeTime;
-			_particles.push_back(p);
-		}
+		needCreateParticleSize = leftSize;
 	}
 	else {
-		//Do nothing
+		needCreateParticleSize = 0;
+	}
+	//LX_LOG("needCreateParticleSize %d\n" , needCreateParticleSize);
+	glm::vec4 worldPos = _modelTransform * glm::vec4(0.0, 0.0, 0.0, 1.0);
+	for (int i = 0; i < needCreateParticleSize; ++i) {
+		// Initialize p
+		Particle p;
+		p._particleLifespan = _particleLifespan + RANDOM_MINUS_1_1() * _particleLifespanVariance;
+		p._leftLifespan = p._particleLifespan;
+		
+		float angle = _angle + RANDOM_MINUS_1_1() * _angleVariance;
+		float speed = _speed + RANDOM_MINUS_1_1() * _speedVariance;
+		p._startPositionX = worldPos.x + RANDOM_MINUS_1_1() * _sourcePositionVariancex;
+		p._finishPositionX = p._startPositionX + cosf(glm::radians(angle)) * speed * p._particleLifespan;
+		p._startPositionY = worldPos.y + RANDOM_MINUS_1_1() * _sourcePositionVariancey;
+		p._finishPositionY = p._startPositionY + sinf(glm::radians(angle)) * speed * p._particleLifespan;
+		
+		p._startParticleSize = _startParticleSize + RANDOM_MINUS_1_1() * _startParticleSizeVariance;
+		p._finishParticleSize = _finishParticleSize + RANDOM_MINUS_1_1() * _finishParticleSizeVariance;
+		
+
+		p._startColorAlpha = _startColorAlpha + RANDOM_MINUS_1_1() * _startColorVarianceAlpha;
+		p._startColorBlue = _startColorBlue + RANDOM_MINUS_1_1() * _startColorVarianceBlue;
+		p._startColorGreen = _startColorGreen + RANDOM_MINUS_1_1() * _startColorVarianceGreen;
+		p._startColorRed = _startColorRed + RANDOM_MINUS_1_1() * _startColorVarianceRed;
+		
+		p._finishColorAlpha = _finishColorAlpha + RANDOM_MINUS_1_1() * _finishColorVarianceAlpha;
+		p._finishColorBlue = _finishColorBlue + RANDOM_MINUS_1_1() * _finishColorVarianceBlue;
+		p._finishColorGreen = _finishColorGreen + RANDOM_MINUS_1_1() * _finishColorVarianceGreen;
+		p._finishColorRed = _finishColorRed + RANDOM_MINUS_1_1() * _finishColorVarianceRed;
+		
+		_particles.push_back(p);
 	}
 }
 
@@ -166,22 +212,37 @@ void ParticleEmitter::fillPolygonInfo()
 	int count = 0;
 	for (auto it : _particles) {
 		V3F_C4B_T2F tmpLB, tmpRB, tmpRT, tmpLT;
-		glm::vec2 lbPos = it._worldPosition + glm::vec2(-size.x / 2, -size.y / 2);
-		glm::vec2 rbPos = it._worldPosition + glm::vec2(size.x / 2, -size.y / 2);
-		glm::vec2 rtPos = it._worldPosition + glm::vec2(size.x / 2, size.y / 2);
-		glm::vec2 ltPos = it._worldPosition + glm::vec2(-size.x / 2, size.y / 2);
+
+		float currentScale = (it._particleLifespan - it._leftLifespan) / it._particleLifespan;
+
+		float particleSize = LINEAR_INTERPOLATION(it._startParticleSize, it._finishParticleSize, currentScale);
+		float particleRed = LINEAR_INTERPOLATION(it._startColorRed, it._finishColorRed, currentScale);
+		float particleGreen = LINEAR_INTERPOLATION(it._startColorGreen, it._finishColorGreen, currentScale);
+		float particleBlue = LINEAR_INTERPOLATION(it._startColorBlue, it._finishColorBlue, currentScale);
+		float particleAlpha = LINEAR_INTERPOLATION(it._startColorAlpha, it._finishColorAlpha, currentScale);
+		float particleWorldPosX = LINEAR_INTERPOLATION(it._startPositionX, it._finishPositionX, currentScale);
+		float particleWorldPosY = LINEAR_INTERPOLATION(it._startPositionY, it._finishPositionY, currentScale);
+		
+		float halfParticleSize = particleSize / 2.0;
+		glm::vec2 lbPos = glm::vec2(particleWorldPosX - halfParticleSize, particleWorldPosY - halfParticleSize);
+		glm::vec2 rbPos = glm::vec2(particleWorldPosX + halfParticleSize, particleWorldPosY - halfParticleSize);
+		glm::vec2 rtPos = glm::vec2(particleWorldPosX + halfParticleSize, particleWorldPosY + halfParticleSize);
+		glm::vec2 ltPos = glm::vec2(particleWorldPosX - halfParticleSize, particleWorldPosY + halfParticleSize);
 
 		tmpLB.setVertices(lbPos.x, lbPos.y, 0.0);
 		tmpRB.setVertices(rbPos.x, rbPos.y, 0.0);
 		tmpRT.setVertices(rtPos.x, rtPos.y, 0.0);
 		tmpLT.setVertices(ltPos.x, ltPos.y, 0.0);
 
-		GLubyte thisOpacity = (int)((float)(it._lifeTime) / _lifeTime * _opacity);
+		GLubyte red = GLubyte(particleRed * 255);
+		GLubyte green = GLubyte(particleGreen * 255);
+		GLubyte blue = GLubyte(particleBlue * 255);
+		GLubyte alpha = GLubyte(particleAlpha * 255);
 
-		tmpLB.setColor(_color[0], _color[1], _color[2], thisOpacity);
-		tmpRB.setColor(_color[0], _color[1], _color[2], thisOpacity);
-		tmpRT.setColor(_color[0], _color[1], _color[2], thisOpacity);
-		tmpLT.setColor(_color[0], _color[1], _color[2], thisOpacity);
+		tmpLB.setColor(red, green, blue, alpha);
+		tmpRB.setColor(red, green, blue, alpha);
+		tmpRT.setColor(red, green, blue, alpha);
+		tmpLT.setColor(red, green, blue, alpha);
 
 		tmpLB.setUV(_spriteFrame->getLBTexCoord().x, _spriteFrame->getLBTexCoord().y);
 		tmpRB.setUV(_spriteFrame->getRBTexCoord().x, _spriteFrame->getRBTexCoord().y);
@@ -225,9 +286,10 @@ void ParticleEmitter::draw()
 
 	glActiveTexture(GL_TEXTURE0); //在绑定纹理之前先激活纹理单元
 	_spriteFrame->bindTexture();
-	glBlendFunc(_blendSrc, _blendDst);
+	glBlendFunc(_blendFuncSource, _blendFuncDestination);
 	glBindVertexArray(_vao);
 	glDrawElements(GL_TRIANGLES, _polyInfo.getIndicesCount(), GL_UNSIGNED_INT, 0);
 	//LX_LOG("%d\n", _polyInfo.getIndicesCount());
 	glBindVertexArray(0);
 }
+
