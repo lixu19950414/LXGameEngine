@@ -25,9 +25,10 @@
 - Finished creating textures using freetype via texturegrid.
 - Finished Label and stroke.
 - BlendFunc.
+- ParticleSystem.
 
 ## Under construction
-- Particles.
+
 
 ## Plans
 - glStateBlock.
