@@ -28,8 +28,9 @@
 - ParticleSystem.
 
 ## Under construction
-
+- Display drawcalls and verts info.
 
 ## Plans
+- Auto batch reduce draw call.
 - Support OpenAL.
 - Support python as script.
