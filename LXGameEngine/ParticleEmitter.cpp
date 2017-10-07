@@ -468,5 +468,9 @@ void ParticleEmitter::draw()
 	glDrawElements(GL_TRIANGLES, _polyInfo.getIndicesCount(), GL_UNSIGNED_INT, 0);
 	//LX_LOG("%d\n", _polyInfo.getIndicesCount());
 	glBindVertexArray(0);
+
+	// Increase display status
+	LX_INCREASE_DRAW_CALL(1);
+	LX_INCREASE_VERTS(_polyInfo.getIndicesCount());
 }
 

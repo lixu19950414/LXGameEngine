@@ -3,6 +3,7 @@
 #include "ShaderCache.h"
 #include "Camera.h"
 #include "TextureCache.h"
+#include "Director.h"
 
 Sprite::Sprite() :
 _spriteFrame(nullptr),
@@ -83,6 +84,11 @@ void Sprite::draw()
 	glBlendFunc(_blendSrc, _blendDst);
 	glBindVertexArray(_vao);
 	glDrawElements(GL_TRIANGLES, _polyInfo.getIndicesCount(), GL_UNSIGNED_INT, 0);
+
+	// Increase display status
+	LX_INCREASE_DRAW_CALL(1);
+	LX_INCREASE_VERTS(_polyInfo.getIndicesCount());
+	
 	glBindVertexArray(0);
 }
 

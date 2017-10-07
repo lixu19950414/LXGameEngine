@@ -28,6 +28,7 @@ Game * Game::getInstance()
 
 
 bool Game::start() {
+	Director::getInstance()->setFPS(60);
 	auto sceneeeee = Scene::getInstance();
 	sceneeeee->scheduleUpdate(1.0, 1, [](float dt) {
 		ParticleEmitter* pe = new ParticleEmitter();
@@ -84,7 +85,7 @@ bool Game::start() {
 //
 //	Label* lbl = new Label();
 //	scene->addChild(lbl);
-//	lbl->initWithFont("Res/Fonts/arial.ttf", 56, "abcdefghijklmnopqrstuvwxyz");
+//	lbl->initWithFont("Res/Fonts/arial.ttf", 56, "abcdefghijklmnopqrstuvwx:yz");
 //	lbl->setPosition(300, 300);
 //	lbl->setColor(255, 0, 0);
 //	lbl->setOpacity(255);

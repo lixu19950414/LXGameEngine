@@ -1,6 +1,12 @@
 #ifndef DIRECTOR_H
 #define DIRECOTR_H
 
+#include "PolygonInfo.h"
+#include "ShaderCache.h"
+
+#define LX_INCREASE_DRAW_CALL(drawCall) Director::getInstance()->addDrawCallsCount(drawCall);
+#define LX_INCREASE_VERTS(verts) Director::getInstance()->addVertsCount(verts);
+
 class Director
 {
 public:
@@ -24,6 +30,13 @@ public:
 	float calculateDeltaTime();
 	inline float getDeltaTime() { return _deltaTime; };
 
+	//Debug methods
+	void setDisplayLinkStatus(bool show) { _displayLinkStatus = show; };
+	inline void addDrawCallsCount(int drawCalls) { _drawCallsCount += drawCalls; };
+	inline void addVertsCount(int vertsCount) { _vertsCount += vertsCount; };
+	inline void clearDisplayCounts() { _drawCallsCount = 0; _vertsCount = 0; };
+	void drawDisplayStatus();
+
 private:
 	GLuint _winWidth;
 	GLuint _winHeight;
@@ -31,6 +44,16 @@ private:
 	float _SPF;
 	std::chrono::steady_clock::time_point _lastUpdateTime;
 	float _deltaTime;
+
+	//Debug attributes
+	bool _displayLinkStatus;
+	int _drawCallsCount;
+	int _vertsCount;
+	GLuint _vao;
+	GLuint _vbo;
+	GLuint _ebo;
+	PolygonInfo _polyInfo;
+	Shader* _shader;
 };
 
 #endif
