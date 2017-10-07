@@ -1,3 +1,8 @@
-﻿  Game.cpp
+﻿  ParticleEmitter.cpp
+c:\projects\lxgameengine\lxgameengine\lxgameengine\particleemitter.cpp(101): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+c:\projects\lxgameengine\lxgameengine\include\rapidxml\rapidxml_utils.hpp(40): warning C4244: “初始化”: 从“std::streamoff”转换到“::size_t”，可能丢失数据
+  c:\projects\lxgameengine\lxgameengine\include\rapidxml\rapidxml_utils.hpp(28): note: 编译 类 模板 成员函数 "rapidxml::file<char>::file(const char *)" 时
+  c:\projects\lxgameengine\lxgameengine\lxgameengine\particleemitter.cpp(57): note: 参见对正在编译的函数 模板 实例化“rapidxml::file<char>::file(const char *)”的引用
+  c:\projects\lxgameengine\lxgameengine\lxgameengine\particleemitter.cpp(57): note: 参见对正在编译的 类 模板 实例化 "rapidxml::file<char>" 的引用
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.exe
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.pdb (Partial PDB)

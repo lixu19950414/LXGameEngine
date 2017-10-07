@@ -15,9 +15,10 @@
 ParticleEmitter::ParticleEmitter():
 _spriteFrame(nullptr),
 _shader(nullptr),
+_addupTime(0.0f),
 _maxParticles(300),
 _generateRate(60),
-_particleLifespan(0.0f),
+_particleLifespan(1.0f),
 _particleLifespanVariance(0.0f),
 _sourcePositionVariancex(0.0f),
 _sourcePositionVariancey(0.0f),
@@ -89,17 +90,15 @@ bool ParticleEmitter::initWithPlist(const std::string & plistName)
 	if (it != end)
 		_maxParticles = atoi(it->second.c_str());
 
+	it = attrs.find("particleLifespan");
+	if (it != end)
+		_particleLifespan = (float)atof(it->second.c_str());
+
 	it = attrs.find("generateRate");
 	if (it != end)
 		_generateRate = atoi(it->second.c_str());
-
-	it = attrs.find("particleLifespan");
-	if (it != end)
-		_particleLifespan = (float)atof(it->second.c_str());
-
-	it = attrs.find("particleLifespan");
-	if (it != end)
-		_particleLifespan = (float)atof(it->second.c_str());
+	else
+		_generateRate = _maxParticles / _particleLifespan;
 
 	it = attrs.find("particleLifespanVariance");
 	if (it != end)
@@ -124,6 +123,8 @@ bool ParticleEmitter::initWithPlist(const std::string & plistName)
 	it = attrs.find("finishParticleSize");
 	if (it != end)
 		_finishParticleSize = (float)atof(it->second.c_str());
+	else
+		_finishParticleSize = _startParticleSize;
 
 	it = attrs.find("finishParticleSizeVariance");
 	if (it != end)
@@ -243,8 +244,13 @@ void ParticleEmitter::updateParticles()
 		}
 	}
 	// Create new particles
+	float timePerParticle = 1.0f / _generateRate;
 	int leftSize = _maxParticles - _particles.size();
-	int newParticlesCnt = (int)(_generateRate * dt);
+	
+	// Calculate add up time
+	_addupTime += dt;
+	int newParticlesCnt = (int)(_generateRate * _addupTime);
+	_addupTime -= newParticlesCnt * timePerParticle;
 
 	int needCreateParticleSize;
 	if (leftSize >= newParticlesCnt) {
@@ -263,6 +269,8 @@ void ParticleEmitter::updateParticles()
 		Particle p;
 		p._particleLifespan = _particleLifespan + RANDOM_MINUS_1_1() * _particleLifespanVariance;
 		p._leftLifespan = p._particleLifespan;
+		// According to order, minus life time
+		p._leftLifespan -= i * timePerParticle;
 		
 		float angle = _angle + RANDOM_MINUS_1_1() * _angleVariance;
 		float speed = _speed + RANDOM_MINUS_1_1() * _speedVariance;

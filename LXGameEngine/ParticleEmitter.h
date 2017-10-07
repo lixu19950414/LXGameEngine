@@ -54,6 +54,7 @@ private:
 
 	SpriteFrame* _spriteFrame;
 	Shader* _shader;
+	float _addupTime;
 
 	int _maxParticles;
 	int _generateRate;
