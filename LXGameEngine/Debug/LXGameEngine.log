@@ -1,5 +1,3 @@
-﻿  ParticleEmitter.cpp
-c:\projects\lxgameengine\lxgameengine\lxgameengine\particleemitter.cpp(78): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
-c:\projects\lxgameengine\lxgameengine\lxgameengine\particleemitter.cpp(226): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+﻿  Game.cpp
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.exe
   LXGameEngine.vcxproj -> C:\Projects\LXGameEngine\LXGameEngine\Debug\LXGameEngine.pdb (Partial PDB)

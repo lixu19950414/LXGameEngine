@@ -2,6 +2,7 @@
 #define PARTICLE_EMITTER_H
 
 #include <vector>
+#include <string>
 #include "Node.h"
 #include "PolygonInfo.h"
 #include "SpriteFrame.h"
@@ -35,7 +36,7 @@ public:
 	};
 public:
 	ParticleEmitter();
-	bool initWithParticleInfo(unsigned int maxParticles, unsigned int generateRate, SpriteFrame* sp);
+	bool initWithPlist(const std::string& plistName);
 	~ParticleEmitter();
 
 protected:
@@ -54,7 +55,7 @@ private:
 	SpriteFrame* _spriteFrame;
 	Shader* _shader;
 
-	int _maxParticels;
+	int _maxParticles;
 	int _generateRate;
 	float _particleLifespan;
 	float _particleLifespanVariance;

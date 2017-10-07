@@ -30,24 +30,28 @@ Game * Game::getInstance()
 bool Game::start() {
 	auto sceneeeee = Scene::getInstance();
 	sceneeeee->scheduleUpdate(1.0, 1, [](float dt) {
-		//Particle
-		SpriteFrame* spriteFrame = SpriteFrameCache::getInstance()->addSpriteFrameWithFileName("Res/Particle/fire.png");
-		LX_LOG("%f, %f\n", spriteFrame->getPixelRect().getSize().x, spriteFrame->getPixelRect().getSize().y);
 		ParticleEmitter* pe = new ParticleEmitter();
-		//pe->autoRelease();
-		pe->initWithParticleInfo(300, 120, spriteFrame);
+		pe->initWithPlist("Res/Particle/firework.plist");
 		pe->setPosition(200, 200);
-		//pe->scheduleUpdate(0.015, -1, [pe](float dt) {
-		//	pe->setPosition(pe->getPosition().x + 1.0, pe->getPosition().y);
-		//});
+		pe->autoRelease();
+		/*pe->scheduleUpdate(0.015, -1, [pe](float dt) {
+			pe->setPosition(pe->getPosition().x + 1.0, pe->getPosition().y);
+		});*/
 
-		Sprite* sprite3 = new (std::nothrow) Sprite();
-		sprite3->initWithFile("Res/Particle/fire.png");
-		sprite3->setPosition(300, 300);
+		ParticleEmitter* pe2 = new ParticleEmitter();
+		pe2->initWithPlist("Res/Particle/fire.plist");
+		pe2->setPosition(500, 200);
+		pe2->autoRelease();
+
+		ParticleEmitter* pe3 = new ParticleEmitter();
+		pe3->initWithPlist("Res/Particle/smoke.plist");
+		pe3->setPosition(800, 200);
+		pe3->autoRelease();
 
 		auto scene = Scene::getInstance();
 		scene->addChild(pe);
-		scene->addChild(sprite3);
+		scene->addChild(pe2);
+		scene->addChild(pe3);
 	});
 	return true;
 }

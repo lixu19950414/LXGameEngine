@@ -1,29 +1,37 @@
 #include "stdafx.h"
+#include <LXFileUtil/LXFileUtil.h>
+#include <rapidxml/rapidxml.hpp>
+#include <rapidxml/rapidxml_utils.hpp>
+#include <map>
+#include <string>
+
 #include "ParticleEmitter.h"
 #include "Director.h"
 #include "Common.h"
+#include "SpriteFrameCache.h"
+
 
 
 ParticleEmitter::ParticleEmitter():
 _spriteFrame(nullptr),
 _shader(nullptr),
-_maxParticels(300),
+_maxParticles(300),
 _generateRate(60),
-_particleLifespan(3.0f),
-_particleLifespanVariance(0.25f),
-_sourcePositionVariancex(40.0f),
-_sourcePositionVariancey(20.0f),
-_startParticleSize(54.0f),
-_startParticleSizeVariance(10.0f),
-_finishParticleSize(54.0f),
+_particleLifespan(0.0f),
+_particleLifespanVariance(0.0f),
+_sourcePositionVariancex(0.0f),
+_sourcePositionVariancey(0.0f),
+_startParticleSize(0.0f),
+_startParticleSizeVariance(0.0f),
+_finishParticleSize(0.0f),
 _finishParticleSizeVariance(0.0f),
-_angle(90.0f),
-_angleVariance(10.0f),
-_speed(60.0f),
-_speedVariance(20.0f),
-_startColorRed(0.75f),
-_startColorGreen(0.25f),
-_startColorBlue(0.11f),
+_angle(0.0f),
+_angleVariance(0.0f),
+_speed(0.0f),
+_speedVariance(0.0f),
+_startColorRed(0.0f),
+_startColorGreen(0.0f),
+_startColorBlue(0.0f),
 _startColorAlpha(1.0f),
 _startColorVarianceRed(0.0f),
 _startColorVarianceGreen(0.0f),
@@ -43,11 +51,172 @@ _blendFuncSource(770)
 	setShader(ShaderCache::getInstance()->getGlobalShader(ShaderCache::LX_SHADERS_PARTICLE));
 }
 
-bool ParticleEmitter::initWithParticleInfo(unsigned int maxParticles, unsigned int generateRate, SpriteFrame* sp)
+bool ParticleEmitter::initWithPlist(const std::string & plistName)
 {
-	_maxParticels = maxParticles;
-	_generateRate = generateRate;
+	rapidxml::file<> fdoc(LX_FU::getAbsolutePath(plistName).c_str());
+	rapidxml::xml_document<> doc; //Character type defaults to char
+	doc.parse<0>(fdoc.data());
+	rapidxml::xml_node<> *root = doc.first_node("plist");
+	rapidxml::xml_node<> *dictRoot = root->first_node("dict");
+	
+	rapidxml::xml_node<> *key;
+	rapidxml::xml_node<> *value;
+	key = dictRoot->first_node();
+
+	std::map <std::string, std::string> attrs;
+	while (key) {
+		value = key->next_sibling();
+		attrs.emplace(std::string(key->value()), std::string(value->value()));
+		key = value->next_sibling();
+	}
+
+	auto it = attrs.find("textureFileName");
+	auto end = attrs.end();
+	if (it == end) {
+		LX_LOG("ParicleEmitter failed because plist do not contain textureFileName.\n");
+		return false;
+	}
+
+	SpriteFrame* sp = SpriteFrameCache::getInstance()->addSpriteFrameWithFileName(it->second.c_str());
+	if (sp == nullptr) {
+		delete sp;
+		LX_LOG("ParicleEmitter failed with create spriteFrame with key %s\n", it->second.c_str());
+		return false;
+	}
 	setSpriteFrame(sp);
+
+	it = attrs.find("maxParticles");
+	if (it != end)
+		_maxParticles = atoi(it->second.c_str());
+
+	it = attrs.find("generateRate");
+	if (it != end)
+		_generateRate = atoi(it->second.c_str());
+
+	it = attrs.find("particleLifespan");
+	if (it != end)
+		_particleLifespan = (float)atof(it->second.c_str());
+
+	it = attrs.find("particleLifespan");
+	if (it != end)
+		_particleLifespan = (float)atof(it->second.c_str());
+
+	it = attrs.find("particleLifespanVariance");
+	if (it != end)
+		_particleLifespanVariance = (float)atof(it->second.c_str());
+
+	it = attrs.find("sourcePositionVariancex");
+	if (it != end)
+		_sourcePositionVariancex = (float)atof(it->second.c_str());
+
+	it = attrs.find("sourcePositionVariancey");
+	if (it != end)
+		_sourcePositionVariancey = (float)atof(it->second.c_str());
+
+	it = attrs.find("startParticleSize");
+	if (it != end)
+		_startParticleSize = (float)atof(it->second.c_str());
+
+	it = attrs.find("startParticleSizeVariance");
+	if (it != end)
+		_startParticleSizeVariance = (float)atof(it->second.c_str());
+
+	it = attrs.find("finishParticleSize");
+	if (it != end)
+		_finishParticleSize = (float)atof(it->second.c_str());
+
+	it = attrs.find("finishParticleSizeVariance");
+	if (it != end)
+		_finishParticleSizeVariance = (float)atof(it->second.c_str());
+
+	it = attrs.find("angle");
+	if (it != end)
+		_angle = (float)atof(it->second.c_str());
+
+	it = attrs.find("angleVariance");
+	if (it != end)
+		_angleVariance = (float)atof(it->second.c_str());
+
+	it = attrs.find("speed");
+	if (it != end)
+		_speed = (float)atof(it->second.c_str());
+
+	it = attrs.find("speedVariance");
+	if (it != end)
+		_speedVariance = (float)atof(it->second.c_str());
+
+	it = attrs.find("startColorRed");
+	if (it != end)
+		_startColorRed = (float)atof(it->second.c_str());
+
+	it = attrs.find("startColorGreen");
+	if (it != end)
+		_startColorGreen = (float)atof(it->second.c_str());
+
+	it = attrs.find("startColorBlue");
+	if (it != end)
+		_startColorBlue = (float)atof(it->second.c_str());
+
+	it = attrs.find("startColorAlpha");
+	if (it != end)
+		_startColorAlpha = (float)atof(it->second.c_str());
+
+	it = attrs.find("startColorVarianceRed");
+	if (it != end)
+		_startColorVarianceRed = (float)atof(it->second.c_str());
+
+	it = attrs.find("startColorVarianceGreen");
+	if (it != end)
+		_startColorVarianceGreen = (float)atof(it->second.c_str());
+
+	it = attrs.find("startColorVarianceBlue");
+	if (it != end)
+		_startColorVarianceBlue = (float)atof(it->second.c_str());
+
+	it = attrs.find("startColorVarianceAlpha");
+	if (it != end)
+		_startColorVarianceAlpha = (float)atof(it->second.c_str());
+
+	it = attrs.find("finishColorRed");
+	if (it != end)
+		_finishColorRed = (float)atof(it->second.c_str());
+
+	it = attrs.find("finishColorGreen");
+	if (it != end)
+		_finishColorGreen = (float)atof(it->second.c_str());
+
+	it = attrs.find("finishColorBlue");
+	if (it != end)
+		_finishColorBlue = (float)atof(it->second.c_str());
+
+	it = attrs.find("finishColorAlpha");
+	if (it != end)
+		_finishColorAlpha = (float)atof(it->second.c_str());
+
+	it = attrs.find("finishColorVarianceRed");
+	if (it != end)
+		_finishColorVarianceRed = (float)atof(it->second.c_str());
+
+	it = attrs.find("finishColorVarianceGreen");
+	if (it != end)
+		_finishColorVarianceGreen = (float)atof(it->second.c_str());
+
+	it = attrs.find("finishColorVarianceBlue");
+	if (it != end)
+		_finishColorVarianceBlue = (float)atof(it->second.c_str());
+
+	it = attrs.find("finishColorVarianceAlpha");
+	if (it != end)
+		_finishColorVarianceAlpha = (float)atof(it->second.c_str());
+
+	it = attrs.find("blendFuncDestination");
+	if (it != end)
+		_blendFuncDestination = atoi(it->second.c_str());
+
+	it = attrs.find("blendFuncSource");
+	if (it != end)
+		_blendFuncSource = atoi(it->second.c_str());
+
 	return true;
 }
 
@@ -74,8 +243,8 @@ void ParticleEmitter::updateParticles()
 		}
 	}
 	// Create new particles
-	int leftSize = _maxParticels - _particles.size();
-	int newParticlesCnt = _generateRate * dt;
+	int leftSize = _maxParticles - _particles.size();
+	int newParticlesCnt = (int)(_generateRate * dt);
 
 	int needCreateParticleSize;
 	if (leftSize >= newParticlesCnt) {
@@ -223,7 +392,7 @@ void ParticleEmitter::fillPolygonInfo()
 		float particleWorldPosX = LINEAR_INTERPOLATION(it._startPositionX, it._finishPositionX, currentScale);
 		float particleWorldPosY = LINEAR_INTERPOLATION(it._startPositionY, it._finishPositionY, currentScale);
 		
-		float halfParticleSize = particleSize / 2.0;
+		float halfParticleSize = particleSize / 2.0f;
 		glm::vec2 lbPos = glm::vec2(particleWorldPosX - halfParticleSize, particleWorldPosY - halfParticleSize);
 		glm::vec2 rbPos = glm::vec2(particleWorldPosX + halfParticleSize, particleWorldPosY - halfParticleSize);
 		glm::vec2 rtPos = glm::vec2(particleWorldPosX + halfParticleSize, particleWorldPosY + halfParticleSize);
