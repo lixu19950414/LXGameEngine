@@ -31,6 +31,5 @@
 
 
 ## Plans
-- glStateBlock.
-- Actions.
 - Support OpenAL.
+- Support python as script.
