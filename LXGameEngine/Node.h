@@ -15,6 +15,7 @@ public:
 
 	virtual void visit(glm::mat4& parentTransform);
 	virtual void draw();
+	virtual void onDraw();
 	virtual void addChild(Node* child);
 	virtual void removeChild(Node* child);
 	virtual void removeAllChildren();

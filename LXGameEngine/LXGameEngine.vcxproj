@@ -149,6 +149,7 @@
     <ClCompile Include="Director.cpp" />
     <ClCompile Include="FontCache.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GLStateBlock.cpp" />
     <ClCompile Include="GLView.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Label.cpp" />
@@ -159,8 +160,11 @@
     <ClCompile Include="PolygonInfo.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Ref.cpp" />
+    <ClCompile Include="RenderCommand.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scheduler.cpp" />
+    <ClCompile Include="ScissorNode.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderCache.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -190,6 +194,7 @@
     <ClInclude Include="Director.h" />
     <ClInclude Include="FontCache.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GLStateBlock.h" />
     <ClInclude Include="GLView.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Label.h" />
@@ -201,9 +206,12 @@
     <ClInclude Include="PolygonInfo.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Ref.h" />
+    <ClInclude Include="RenderCommand.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scheduler.h" />
+    <ClInclude Include="ScissorNode.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderCache.h" />
     <ClInclude Include="Sprite.h" />

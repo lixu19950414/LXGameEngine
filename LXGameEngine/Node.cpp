@@ -72,6 +72,10 @@ void Node::draw()
 {
 }
 
+void Node::onDraw()
+{
+}
+
 void Node::addChild(Node * child)
 {
 	assert(child->_parent == nullptr);

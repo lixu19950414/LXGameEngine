@@ -144,6 +144,18 @@
     <ClCompile Include="ParticleEmitter.cpp">
       <Filter>源文件\2d</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>源文件\render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderCommand.cpp">
+      <Filter>源文件\render</Filter>
+    </ClCompile>
+    <ClCompile Include="GLStateBlock.cpp">
+      <Filter>源文件\render</Filter>
+    </ClCompile>
+    <ClCompile Include="ScissorNode.cpp">
+      <Filter>源文件\2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LXGameEngine.rc">
@@ -256,6 +268,18 @@
       <Filter>头文件\2d</Filter>
     </ClInclude>
     <ClInclude Include="ParticleEmitter.h">
+      <Filter>头文件\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>头文件\render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderCommand.h">
+      <Filter>头文件\render</Filter>
+    </ClInclude>
+    <ClInclude Include="GLStateBlock.h">
+      <Filter>头文件\render</Filter>
+    </ClInclude>
+    <ClInclude Include="ScissorNode.h">
       <Filter>头文件\2d</Filter>
     </ClInclude>
   </ItemGroup>

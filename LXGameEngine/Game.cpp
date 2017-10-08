@@ -12,6 +12,7 @@
 #include "LabelSprite.h"
 #include "Label.h"
 #include "ParticleEmitter.h"
+#include "ScissorNode.h"
 
 Game * g_Game = nullptr;
 
@@ -31,31 +32,72 @@ bool Game::start() {
 	Director::getInstance()->setFPS(60);
 	auto sceneeeee = Scene::getInstance();
 	sceneeeee->scheduleUpdate(1.0, 1, [](float dt) {
-		ParticleEmitter* pe = new ParticleEmitter();
-		pe->initWithPlist("Res/Particle/firework.plist");
-		pe->setPosition(200, 200);
-		pe->autoRelease();
-		/*pe->scheduleUpdate(0.015, -1, [pe](float dt) {
-			pe->setPosition(pe->getPosition().x + 1.0, pe->getPosition().y);
-		});*/
+		//Scissor node
+		ScissorNode* sn = new ScissorNode();
+		sn->setContentSize(300, 300);
+		sn->setPosition(100, 100);
+		sn->setAnchorPoint(0.0, 0.0);
+		sn->autoRelease();
 
-		ParticleEmitter* pe2 = new ParticleEmitter();
-		pe2->initWithPlist("Res/Particle/fire.plist");
-		pe2->setPosition(500, 200);
-		pe2->autoRelease();
+		Sprite* sprite1 = new (std::nothrow) Sprite();
+		sprite1->initWithFile("Res/test.png");
+		sprite1->setContentSize(512, 512);
+		sprite1->setAnchorPoint(0.0, 0.0);
+		sn->addChild(sprite1);
 
-		ParticleEmitter* pe3 = new ParticleEmitter();
-		pe3->initWithPlist("Res/Particle/smoke.plist");
-		pe3->setPosition(800, 200);
-		pe3->autoRelease();
+		ScissorNode* sn2 = new ScissorNode();
+		sn2->setContentSize(300, 100);
+		sn2->setPosition(150, 100);
+		sn2->setAnchorPoint(0.0, 0.0);
+		sn2->autoRelease();
+		sn->addChild(sn2);
 
-		auto scene = Scene::getInstance();
-		scene->addChild(pe);
-		scene->addChild(pe2);
-		scene->addChild(pe3);
+		Sprite* sprite2 = new (std::nothrow) Sprite();
+		sprite2->initWithFile("Res/wall.jpg");
+		sprite2->setContentSize(100, 100);
+		sprite2->setPosition(250, 250);
+		sprite2->setAnchorPoint(0.0, 0.0);
+		sn->addChild(sprite2);
+
+		Sprite* sprite3 = new (std::nothrow) Sprite();
+		sprite3->initWithFile("Res/test.png");
+		sprite3->setContentSize(512, 512);
+		sprite3->setAnchorPoint(0.0, 0.0);
+		sn2->addChild(sprite3);
+
+		auto sceneeeee = Scene::getInstance();
+		sceneeeee->addChild(sn);
+
 	});
 	return true;
 }
+
+//bool Game::start() {
+//	Director::getInstance()->setFPS(60);
+//	auto sceneeeee = Scene::getInstance();
+//	sceneeeee->scheduleUpdate(1.0, 1, [](float dt) {
+//		ParticleEmitter* pe = new ParticleEmitter();
+//		pe->initWithPlist("Res/Particle/firework.plist");
+//		pe->setPosition(200, 200);
+//		pe->autoRelease();
+//
+//		ParticleEmitter* pe2 = new ParticleEmitter();
+//		pe2->initWithPlist("Res/Particle/fire.plist");
+//		pe2->setPosition(500, 200);
+//		pe2->autoRelease();
+//
+//		ParticleEmitter* pe3 = new ParticleEmitter();
+//		pe3->initWithPlist("Res/Particle/smoke.plist");
+//		pe3->setPosition(800, 200);
+//		pe3->autoRelease();
+//
+//		auto scene = Scene::getInstance();
+//		scene->addChild(pe);
+//		scene->addChild(pe2);
+//		scene->addChild(pe3);
+//	});
+//	return true;
+//}
 
 
 //bool Game::start() {

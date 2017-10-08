@@ -8,6 +8,7 @@
 #include "FontCache.h"
 #include "ShaderCache.h"
 #include "TextureGridCache.h"
+#include "Renderer.h"
 
 Director* g_pDirector = nullptr;
 
@@ -88,6 +89,10 @@ void Director::onBeginResetGLState()
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	auto instance = Renderer::getInstance();
+	instance->clearStateBlocks();
+	instance->pushDefault2DStateBlock();
+	instance->applyTopStateBlock();
 }
 
 float Director::calculateDeltaTime()
@@ -105,11 +110,11 @@ void Director::drawDisplayStatus()
 
 	std::string drawCallWords = "GL CALLS: ";
 	char str1[10];
-	sprintf(str1, "%d", _drawCallsCount);
+	sprintf_s(str1, "%d", _drawCallsCount);
 	drawCallWords += str1;
 	std::string vertsWords = "GL VERTS: ";
 	char str2[10];
-	sprintf(str2, "%d", _vertsCount);
+	sprintf_s(str2, "%d", _vertsCount);
 	vertsWords += str2;
 
 	GLfloat baseX = 10;
