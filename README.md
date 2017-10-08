@@ -26,9 +26,9 @@
 - Finished Label and stroke.
 - BlendFunc.
 - ParticleSystem.
+- Display drawcalls and verts info.
 
 ## Under construction
-- Display drawcalls and verts info.
 
 ## Plans
 - Auto batch reduce draw call.
