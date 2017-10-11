@@ -23,10 +23,12 @@
 - Finished SpriteFrame & SpriteFrameCache.
 - Finished TextureGrid.
 - Finished creating textures using freetype via texturegrid.
-- Finished Label and stroke.
-- BlendFunc.
-- ParticleSystem.
-- Display drawcalls and verts info.
+- Finished label and stroke.
+- Finished blendFunc.
+- Finished particleSystem.
+- Finished display drawcalls and verts info.
+- Finished glStateBlock.
+- Finished ScissorNode.
 
 ## Under construction
 
