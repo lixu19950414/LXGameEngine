@@ -31,6 +31,7 @@
 - Finished ScissorNode.
 
 ## Under construction
+- SQLite3
 
 ## Plans
 - Auto batch reduce draw call.
