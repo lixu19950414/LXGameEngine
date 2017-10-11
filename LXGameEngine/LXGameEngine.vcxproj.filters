@@ -156,6 +156,9 @@
     <ClCompile Include="ScissorNode.cpp">
       <Filter>源文件\2d</Filter>
     </ClCompile>
+    <ClCompile Include="SQLiteManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LXGameEngine.rc">
@@ -281,6 +284,9 @@
     </ClInclude>
     <ClInclude Include="ScissorNode.h">
       <Filter>头文件\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="SQLiteManager.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

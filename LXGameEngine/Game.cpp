@@ -13,6 +13,7 @@
 #include "Label.h"
 #include "ParticleEmitter.h"
 #include "ScissorNode.h"
+#include "SQLiteManager.h"
 
 Game * g_Game = nullptr;
 
@@ -27,50 +28,55 @@ Game * Game::getInstance()
 	return g_Game;
 }
 
-
 bool Game::start() {
-	Director::getInstance()->setFPS(60);
-	auto sceneeeee = Scene::getInstance();
-	sceneeeee->scheduleUpdate(1.0, 1, [](float dt) {
-		//Scissor node
-		ScissorNode* sn = new ScissorNode();
-		sn->setContentSize(300, 300);
-		sn->setPosition(100, 100);
-		sn->setAnchorPoint(0.0, 0.0);
-		sn->autoRelease();
-
-		Sprite* sprite1 = new (std::nothrow) Sprite();
-		sprite1->initWithFile("Res/test.png");
-		sprite1->setContentSize(512, 512);
-		sprite1->setAnchorPoint(0.0, 0.0);
-		sn->addChild(sprite1);
-
-		ScissorNode* sn2 = new ScissorNode();
-		sn2->setContentSize(300, 100);
-		sn2->setPosition(150, 100);
-		sn2->setAnchorPoint(0.0, 0.0);
-		sn2->autoRelease();
-		sn->addChild(sn2);
-
-		Sprite* sprite2 = new (std::nothrow) Sprite();
-		sprite2->initWithFile("Res/wall.jpg");
-		sprite2->setContentSize(100, 100);
-		sprite2->setPosition(250, 250);
-		sprite2->setAnchorPoint(0.0, 0.0);
-		sn->addChild(sprite2);
-
-		Sprite* sprite3 = new (std::nothrow) Sprite();
-		sprite3->initWithFile("Res/test.png");
-		sprite3->setContentSize(512, 512);
-		sprite3->setAnchorPoint(0.0, 0.0);
-		sn2->addChild(sprite3);
-
-		auto sceneeeee = Scene::getInstance();
-		sceneeeee->addChild(sn);
-
-	});
+	auto ins = SQLiteManager::getInstance();
+	ins->initWithDBPath("Res/db/localdb.sql");
 	return true;
 }
+
+//bool Game::start() {
+//	Director::getInstance()->setFPS(60);
+//	auto sceneeeee = Scene::getInstance();
+//	sceneeeee->scheduleUpdate(1.0, 1, [](float dt) {
+//		//Scissor node
+//		ScissorNode* sn = new ScissorNode();
+//		sn->setContentSize(300, 300);
+//		sn->setPosition(100, 100);
+//		sn->setAnchorPoint(0.0, 0.0);
+//		sn->autoRelease();
+//
+//		Sprite* sprite1 = new (std::nothrow) Sprite();
+//		sprite1->initWithFile("Res/test.png");
+//		sprite1->setContentSize(512, 512);
+//		sprite1->setAnchorPoint(0.0, 0.0);
+//		sn->addChild(sprite1);
+//
+//		ScissorNode* sn2 = new ScissorNode();
+//		sn2->setContentSize(300, 100);
+//		sn2->setPosition(150, 100);
+//		sn2->setAnchorPoint(0.0, 0.0);
+//		sn2->autoRelease();
+//		sn->addChild(sn2);
+//
+//		Sprite* sprite2 = new (std::nothrow) Sprite();
+//		sprite2->initWithFile("Res/wall.jpg");
+//		sprite2->setContentSize(100, 100);
+//		sprite2->setPosition(250, 250);
+//		sprite2->setAnchorPoint(0.0, 0.0);
+//		sn->addChild(sprite2);
+//
+//		Sprite* sprite3 = new (std::nothrow) Sprite();
+//		sprite3->initWithFile("Res/test.png");
+//		sprite3->setContentSize(512, 512);
+//		sprite3->setAnchorPoint(0.0, 0.0);
+//		sn2->addChild(sprite3);
+//
+//		auto sceneeeee = Scene::getInstance();
+//		sceneeeee->addChild(sn);
+//
+//	});
+//	return true;
+//}
 
 //bool Game::start() {
 //	Director::getInstance()->setFPS(60);
